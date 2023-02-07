@@ -25,11 +25,12 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Jim Horn's website`,
+        short_name: `jdhorn.com`,
         start_url: `/`,
         background_color: `#663399`,
         // This will impact how browsers show your PWA/website
@@ -40,9 +41,9 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: "UA-5459816-1",
+        id: 'UA-5459816-1',
 
         // Include GTM in development.
         //
@@ -53,8 +54,8 @@ module.exports = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
-        defaultDataLayer: { platform: "gatsby" },
+        defaultDataLayer: { platform: 'gatsby' },
       },
     },
   ],
-}
+};
