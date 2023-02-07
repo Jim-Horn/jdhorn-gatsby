@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "jdhorn.com",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Jim Horn <jim@jdhorn.com>",
   "dependencies": {
     "gatsby": "^5.5.0",
     "gatsby-plugin-google-tagmanager": "^5.5.0",
@@ -33,9 +33,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/Jim-Horn/jdhorn-gatsby"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/Jim-Horn/jdhorn-gatsby/issues"
   }
 }
