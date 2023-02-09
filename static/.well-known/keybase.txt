@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/jdhorn
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jdhorn.com
+  * I am jdhorn (https://keybase.io/jdhorn) on keybase.
+  * I have a public key ASDhtzsMKFwURbNdMc12NDm6fxaK6vQnyBHjQmlbF3yyUAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120d8e4ad360f5b390a70cfc4afd9c33451d81be4a4f5ab0814935f0aa4377c90600a",
+      "host": "keybase.io",
+      "kid": "0120e1b73b0c285c1445b35d31cd763439ba7f168aeaf427c811e342695b177cb2500a",
+      "uid": "28dfc13e996f94a15c07ad9e48edfc19",
+      "username": "jdhorn"
+    },
+    "merkle_root": {
+      "ctime": 1675902543,
+      "hash": "144b471116503b7872f69280c166b616c576e0aeabb001061c5543cdbfea497fa592f91f5ec5b51fb82b926cd92dd75ac21a8af380e1c00164eb29a512521c55",
+      "hash_meta": "b1b57620074e69b76b1b12134abcd8d112970fd2efa113debeef9f52dcebb9f4",
+      "seqno": 24015498
+    },
+    "service": {
+      "entropy": "VX4PAfC/2KymFVqSWylt2aDF",
+      "hostname": "jdhorn.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.4"
+  },
+  "ctime": 1675902572,
+  "expire_in": 504576000,
+  "prev": "7ecc9b741c7443d831a3c9cbb79cb39fe3282cafd564cf5dda303f5b5b5ae156",
+  "seqno": 73,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg4bc7DChcFEWzXTHNdjQ5un8Wiur0J8gR40JpWxd8slAKp3BheWxvYWTESpcCScQgfsybdBx0Q9gxo8nLt5yzn+MoLK/VZM9d2jA/W1ta4VbEIEME4yxeuMhsJZ07MguO83v/MoGn7PBBBHuqCP7y4a/XAgHCo3NpZ8RAt9aU1oAd92v6/AdkSzCur5KNebKosRQL4iWjanMugrFcDaDzaxaw4W+Zy5iOmkq4KlOnJl04R457OB3IsqHSB6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIPtOIH1oOIOwlNOZy70uzGmwWxJhy5N/B0N6Ipd+lPleo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jdhorn
+
+==================================================================
