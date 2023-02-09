@@ -24,7 +24,7 @@ const HomePage = () => (
       <p>You've arrived at jdhorn.com</p>
       <p>Actual content coming soon</p>
       <p>
-        Existing stuff <Link to="/sitemap">here</Link>
+        <Link to="/sitemap">Existing stuff here</Link>
       </p>
     </div>
   </CenteredContent>
