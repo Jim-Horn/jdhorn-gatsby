@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import Layout from '../components/layout';
 import Seo from '../components/seo';
 
 const CenteredContent = styled.main`
