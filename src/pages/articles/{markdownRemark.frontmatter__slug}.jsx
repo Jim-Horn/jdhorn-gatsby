@@ -2,6 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/layout';
 import styled from 'styled-components';
+import Seo from '../../components/seo';
 
 const Tiny = styled.span`
   font-size: small;
@@ -29,10 +30,15 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "dddd, MMMM DD, YYYY")
         slug
         title
+        seoTitle
       }
     }
   }
 `;
+
+export const Head = ({ data }) => (
+  <Seo title={data.markdownRemark.frontmatter.seoTitle} />
+);
