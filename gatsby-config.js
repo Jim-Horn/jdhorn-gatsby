@@ -57,5 +57,13 @@ module.exports = {
         defaultDataLayer: { platform: 'gatsby' },
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/articles`,
+      },
+    },
+    `gatsby-transformer-remark`,
   ],
 };
