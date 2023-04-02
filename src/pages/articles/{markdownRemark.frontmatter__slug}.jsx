@@ -11,7 +11,7 @@ const Date = styled.span`
 export default function ArticleTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
-  const { date, tags, title, seoTitle } = frontmatter;
+  const { date, tags, title } = frontmatter;
   return (
     <Layout>
       <div>
@@ -21,7 +21,7 @@ export default function ArticleTemplate({ data }) {
           <Date>{date}</Date>
         </h1>
         <main dangerouslySetInnerHTML={{ __html: html }} />
-        <ListTags tags={tags} />
+        {tags && <ListTags tags={tags} />}
       </div>
     </Layout>
   );
