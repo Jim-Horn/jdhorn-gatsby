@@ -3,23 +3,25 @@ import { graphql } from 'gatsby';
 import Layout from '../../components/layout';
 import styled from 'styled-components';
 import Seo from '../../components/seo';
-
-const Tiny = styled.span`
+import { ListTags } from '../../components';
+const Date = styled.span`
   font-size: small;
 `;
 
 export default function ArticleTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
+  const { date, tags, title, seoTitle } = frontmatter;
   return (
     <Layout>
       <div>
         <h1>
-          {frontmatter.title}
+          {title}
           <br />
-          <Tiny>{frontmatter.date}</Tiny>
+          <Date>{date}</Date>
         </h1>
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <main dangerouslySetInnerHTML={{ __html: html }} />
+        <ListTags tags={tags} />
       </div>
     </Layout>
   );
@@ -34,6 +36,7 @@ export const pageQuery = graphql`
         slug
         title
         seoTitle
+        tags
       }
     }
   }
