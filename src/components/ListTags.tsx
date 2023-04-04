@@ -42,10 +42,10 @@ export const ListTags = tags => {
   const tagArr = tags.tags.split(',');
   return (
     <TagList>
-      {tagArr.map(tag => {
+      {tagArr.map((tag, index) => {
         tag = tag.trim();
         return (
-          <TagListItem>
+          <TagListItem key={index}>
             <Link to={`#`}>{tag}</Link>
           </TagListItem>
         );
