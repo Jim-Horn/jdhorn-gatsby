@@ -20,9 +20,9 @@ export default function PageTemplate({ data, children }) {
         <br />
         <Date>{date}</Date>
       </h1>
-      <main>
+      <section>
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
-      </main>
+      </section>
       {tags && <ListTags tags={tags} />}
     </Layout>
   );

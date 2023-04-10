@@ -18,7 +18,7 @@ export default function ArticleTemplate({ data }) {
           <br />
           <Date>{date}</Date>
         </h1>
-        <main dangerouslySetInnerHTML={{ __html: html }} />
+        <section dangerouslySetInnerHTML={{ __html: html }} />
         {tags && <ListTags tags={tags} />}
       </div>
     </Layout>
