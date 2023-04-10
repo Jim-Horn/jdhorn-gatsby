@@ -17,11 +17,13 @@ module.exports = {
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-mdx`,
+    // Add a collection called "posts" that looks
+    // for files in content/posts
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages`,
+        name: `posts`,
+        path: `${__dirname}/src/articles`,
       },
     },
     {

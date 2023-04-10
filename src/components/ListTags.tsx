@@ -38,7 +38,7 @@ const TagList = styled.ul`
   }
 `;
 
-export const ListTags = tags => {
+const ListTags = tags => {
   const tagArr = tags.tags.split(',');
   return (
     <TagList>
@@ -53,3 +53,5 @@ export const ListTags = tags => {
     </TagList>
   );
 };
+
+export default ListTags;

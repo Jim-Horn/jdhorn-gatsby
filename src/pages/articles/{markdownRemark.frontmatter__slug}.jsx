@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../../components/layout';
 import styled from 'styled-components';
-import Seo from '../../components/seo';
-import { ListTags } from '../../components';
+import { Layout, ListTags, Seo } from '../../components';
 const Date = styled.span`
   font-size: small;
 `;
