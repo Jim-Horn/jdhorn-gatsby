@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import Seo from '../components/seo';
+import { Seo, Posts } from '../components/';
 
 const CenteredContent = styled.main`
   display: flex;
@@ -21,11 +21,8 @@ const HomePage = () => (
   <CenteredContent>
     <div>
       <h1>Hi</h1>
-      <p>You've arrived at jdhorn.com</p>
-      <p>Actual content coming soon</p>
-      <p>
-        <Link to="/sitemap">Existing stuff here</Link>
-      </p>
+      <p>You've arrived at jdhorn.com - a work in progress</p>
+      <Posts />
     </div>
   </CenteredContent>
 );
