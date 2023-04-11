@@ -13,7 +13,7 @@ const ArticleList = styled.ul`
   }
 `;
 
-const Articles = ({ Heading: 'All articles' }) => {
+const Articles = ({ Heading = 'All articles' }) => {
   const data = useStaticQuery(graphql`
     query {
       allMdx {
