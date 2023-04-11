@@ -3,17 +3,17 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-const ArticleListItem = styled.li``;
-const ArticleList = styled.ul`
+const PostListItem = styled.li``;
+const PostList = styled.ul`
   display: flex;
   flex-direction: column;
 
-  ${ArticleListItem} {
+  ${PostListItem} {
     margin-bottom: 0;
   }
 `;
 
-const Articles = ({ Heading = 'All articles' }) => {
+const Posts = ({ heading = 'All posts' }) => {
   const data = useStaticQuery(graphql`
     query {
       allMdx {
@@ -47,24 +47,24 @@ const Articles = ({ Heading = 'All articles' }) => {
     }
   `);
 
-  const articles = [...data.allMdx.nodes, ...data.allMarkdownRemark.nodes];
+  const posts = [...data.allMdx.nodes, ...data.allMarkdownRemark.nodes];
   return (
     <>
       <h2>{heading}</h2>
-      <ArticleList>
-        {articles &&
-          articles.map((article, id) => (
-            <ArticleListItem key={id}>
+      <PostList>
+        {posts &&
+          posts.map((post, id) => (
+            <PostListItem key={id}>
               <Link
-                to={'/articles' + article.frontmatter.slug}
-                title={article.frontmatter.seoTitle}>
-                {article.frontmatter.title} ({article.frontmatter.date})
+                to={'/posts' + post.frontmatter.slug}
+                title={post.frontmatter.seoTitle}>
+                {post.frontmatter.title} ({post.frontmatter.date})
               </Link>
-            </ArticleListItem>
+            </PostListItem>
           ))}
-      </ArticleList>
+      </PostList>
     </>
   );
 };
 
-export default Articles;
+export default Posts;

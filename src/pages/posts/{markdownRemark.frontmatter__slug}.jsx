@@ -6,7 +6,7 @@ const Date = styled.span`
   font-size: small;
 `;
 
-export default function ArticleTemplate({ data }) {
+export default function PostTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
   const { date, tags, title } = frontmatter;
