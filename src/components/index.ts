@@ -5,5 +5,6 @@ import Pen from './CodePen';
 import Posts from './posts';
 import Seo from './seo';
 import SiteMap from './sitemap';
+import Tags from './Tags';
 
-export { Header, Layout, ListTags, Pen, Posts, Seo, SiteMap };
+export { Header, Layout, ListTags, Pen, Posts, Seo, SiteMap, Tags };
