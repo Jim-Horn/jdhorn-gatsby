@@ -30,29 +30,17 @@ const Posts = ({ heading = 'All posts' }) => {
           }
         }
       }
-      allMarkdownRemark {
-        nodes {
-          frontmatter {
-            slug
-            date
-            seoTitle
-            title
-            tags
-          }
-          internal {
-            type
-          }
-        }
-      }
     }
   `);
 
-  const posts = [...data.allMdx.nodes, ...data.allMarkdownRemark.nodes];
+  const posts = [...data.allMdx.nodes].sort((a, b) =>
+    a.frontmatter.date < b.frontmatter.date ? 1 : -1
+  );
   return (
-    <>
+    <section>
       <h2>{heading}</h2>
       <PostList>
-        {posts &&
+        {posts ? (
           posts.map((post, id) => (
             <PostListItem key={id}>
               <Link
@@ -61,9 +49,12 @@ const Posts = ({ heading = 'All posts' }) => {
                 {post.frontmatter.title} ({post.frontmatter.date})
               </Link>
             </PostListItem>
-          ))}
+          ))
+        ) : (
+          <p>No posts found</p>
+        )}
       </PostList>
-    </>
+    </section>
   );
 };
 

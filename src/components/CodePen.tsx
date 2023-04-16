@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Codepen from 'react-codepen-embed';
 
-const Code = ({
+const Pen = ({
   hash,
   height = 300,
   defaultTab = 'js',
@@ -23,4 +23,4 @@ const Code = ({
   />
 );
 
-export default Code;
+export default Pen;

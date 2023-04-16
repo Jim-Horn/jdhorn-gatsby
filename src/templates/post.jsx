@@ -10,6 +10,10 @@ const Date = styled.span`
   font-size: small;
 `;
 
+const ContentSection = styled.section`
+  margin-bottom: 1rem;
+`;
+
 export default function PageTemplate({ data, children }) {
   const { frontmatter } = data.mdx;
   const { date, tags, title } = frontmatter;
@@ -20,9 +24,9 @@ export default function PageTemplate({ data, children }) {
         <br />
         <Date>{date}</Date>
       </h1>
-      <section>
+      <ContentSection>
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
-      </section>
+      </ContentSection>
       {tags && <ListTags tags={tags} />}
     </Layout>
   );

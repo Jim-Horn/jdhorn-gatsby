@@ -1,5 +1,6 @@
 const path = require('path');
 const postTemplate = path.resolve(`./src/templates/post.jsx`);
+const tagPageTemplate = path.resolve(`./src/templates/tag.jsx`);
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -20,14 +21,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (result.errors) {
+  const allTags = await graphql(`
+    query {
+      allMdx {
+        nodes {
+          frontmatter {
+            tags
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors || allTags.erros) {
     reporter.panicOnBuild('Error loading MDX result', result.errors);
   }
 
-  // Create blog post pages.
   const posts = result.data.allMdx.nodes;
 
-  // you'll call `createPage` for each result
   posts.forEach(node => {
     createPage({
       // As mentioned above you could also query something else like frontmatter.title above and use a helper function
@@ -38,6 +49,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // You can use the values in this context in
       // our page layout component
       context: { id: node.id },
+    });
+  });
+
+  const { nodes } = allTags.data.allMdx;
+
+  const tags = [
+    ...new Set(
+      nodes
+        .reduce(
+          (acc, node) => acc.concat(node.frontmatter.tags.split(', ')),
+          []
+        )
+        .sort()
+    ),
+  ];
+
+  tags.forEach(tag => {
+    createPage({
+      path: '/tag/' + tag,
+      component: tagPageTemplate,
+      context: {
+        tagRegex: `/${tag}/i`,
+        tag,
+      },
     });
   });
 };

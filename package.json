@@ -14,19 +14,17 @@
     "gatsby-plugin-mdx": "^5.7.0",
     "gatsby-plugin-sharp": "^5.5.0",
     "gatsby-plugin-styled-components": "^6.5.0",
-    "gatsby-plugin-use-query-params": "^1.0.1",
-    "gatsby-remark-prismjs": "^7.8.0",
     "gatsby-source-filesystem": "^5.7.0",
-    "gatsby-transformer-remark": "^6.8.0",
     "gatsby-transformer-sharp": "^5.5.0",
-    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-codepen-embed": "^1.1.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6",
-    "use-query-params": "^2.2.1"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/mdx": "^2.3.0",
+    "loader-utils": "^3.2.1",
     "prettier": "^2.8.3"
   },
   "keywords": [

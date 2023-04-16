@@ -40,13 +40,14 @@ const TagList = styled.ul`
 
 const ListTags = tags => {
   const tagArr = tags.tags.split(',');
+  const tagPage = `/tag`;
   return (
     <TagList>
       {tagArr.map((tag, index) => {
         tag = tag.trim();
         return (
           <TagListItem key={index}>
-            <Link to={`#`}>{tag}</Link>
+            <Link to={`${tagPage}/${tag}`}>{tag}</Link>
           </TagListItem>
         );
       })}
