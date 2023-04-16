@@ -22,7 +22,7 @@ export default function PageTemplate({ data, children }) {
       <h1>
         {title}
         <br />
-        <Date>{date}</Date>
+        <Date title={dateDiff}>{date}</Date>
       </h1>
       <ContentSection>
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
@@ -36,6 +36,7 @@ export const query = graphql`
   query ($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
+        dateDiff: date(fromNow: true)
         date(formatString: "dddd, MMMM DD, YYYY")
         slug
         title
