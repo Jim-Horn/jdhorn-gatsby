@@ -16,7 +16,7 @@ const ContentSection = styled.section`
 
 export default function PageTemplate({ data, children }) {
   const { frontmatter } = data.mdx;
-  const { date, tags, title } = frontmatter;
+  const { date, dateDiff, tags, title } = frontmatter;
   return (
     <Layout>
       <h1>

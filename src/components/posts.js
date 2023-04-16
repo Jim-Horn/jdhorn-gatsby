@@ -16,11 +16,12 @@ const PostList = styled.ul`
 const Posts = ({ heading = 'All posts' }) => {
   const data = useStaticQuery(graphql`
     query {
-      allMdx {
+      allMdx(sort: { frontmatter: { date: DESC } }) {
         nodes {
           frontmatter {
             slug
             date
+            dateDiff: date(fromNow: true)
             seoTitle
             title
             tags
@@ -32,22 +33,22 @@ const Posts = ({ heading = 'All posts' }) => {
       }
     }
   `);
-
-  const posts = [...data.allMdx.nodes].sort((a, b) =>
-    a.frontmatter.date < b.frontmatter.date ? 1 : -1
-  );
+  const { nodes } = data.allMdx;
   return (
     <section>
       <h2>{heading}</h2>
       <PostList>
-        {posts ? (
-          posts.map((post, id) => (
+        {nodes ? (
+          nodes.map((post, id) => (
             <PostListItem key={id}>
               <Link
                 to={'/posts' + post.frontmatter.slug}
                 title={post.frontmatter.seoTitle}>
-                {post.frontmatter.title} ({post.frontmatter.date})
-              </Link>
+                {post.frontmatter.title}
+              </Link>{' '}
+              <small>
+                {post.frontmatter.date} ({post.frontmatter.dateDiff})
+              </small>
             </PostListItem>
           ))
         ) : (

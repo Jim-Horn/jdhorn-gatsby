@@ -3,17 +3,23 @@ import { graphql, Link } from 'gatsby';
 import { Layout, Seo } from '../components';
 
 export default function TagPageTemplate({ data, pageContext }) {
+  const { tag } = pageContext;
+  const { nodes } = data.allMdx;
   return (
     <Layout>
-      <h1>Posts that are tagged "{pageContext.tag}"</h1>
+      <h1>Posts that are tagged "{tag}"</h1>
       <ul>
-        {data.allMdx.nodes.map(node => (
-          <li>
-            <Link to={`/posts${node.frontmatter.slug}`}>
-              {node.frontmatter.title}
-            </Link>
-          </li>
-        ))}
+        {nodes.map(node => {
+          const { slug, title, date, dateDiff } = node.frontmatter;
+          return (
+            <li>
+              <Link to={`/posts${slug}`}>{title}</Link>{' '}
+              <small>
+                {date} ({dateDiff})
+              </small>
+            </li>
+          );
+        })}
       </ul>
     </Layout>
   );
@@ -26,6 +32,7 @@ export const tags = graphql`
         frontmatter {
           slug
           date
+          dateDiff: date(fromNow: true)
           seoTitle
           title
           tags
