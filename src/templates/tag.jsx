@@ -42,5 +42,5 @@ export const tags = graphql`
   }
 `;
 export const Head = ({ data, pageContext }) => (
-  <Seo title={`Posts that are tagged with ${pageContext.tag}`} />
+  <Seo title={`Posts tagged with ${pageContext.tag}`} />
 );
