@@ -10,7 +10,7 @@ import { Pen } from '../components';
 
 Ok, what the hell is "humpy text"?
 
-Naming things is hard, but basically this is an experiment in functional programming - just for fun. When the user inputs text into the textarea, the case of each alternating character is changed, resulting in HuMpY tExT.
+Naming things is hard, but basically this is an example of functional programming - just for fun. When the user inputs text into the textarea, the case of each alternating character is changed, resulting in HuMpY tExT.
 
 <Pen hash="MWWoPJK" height="375" defaultTab="result" editable={false} />
 
@@ -30,7 +30,7 @@ JavaScript, being a multi-paradigm language, can be used for functional programm
 
 ## How does it work?
 
-This code defines a function called `convertArrayToHumpyCaseAndPrint` that takes an input string, splits it into an array of characters, applies a series of modifications to each character, converts the array to a string, and then updates the text content of a textarea with the resulting string.
+HuMpY tExT defines a function called `convertArrayToHumpyCaseAndPrint` that takes an input string, splits it into an array of characters, applies a series of modifications to each character, converts the array to a string, and then updates the text content of a textarea with the resulting string. Note the descriptive name for the function - which in itself helps the user to understand exactly what is done.
 
 The modifications are performed by the `modArray` function, which takes an array of characters and applies a series of transformations to each one. These transformations include toggling the case of letters, skipping non-alphabetic characters, and pushing each modified character to a result array. The `modArray` function uses a functional programming approach, with functions like `pipe` and `reduce` to combine a series of smaller functions into a larger one.
 
@@ -43,7 +43,6 @@ As an aside, the `pipe` function is written in two fashions - as an arrow functi
 function pipe(...fns) {
     return function (result) {
         fns.reduce(function (val, fn) {
-            // debugger;
             return fn(val);
         }, result);
     };
