@@ -3,9 +3,39 @@ slug: '/humpy-text'
 date: '2023-04-16'
 title: 'HuMpY tExT'
 seoTitle: 'HuMpY tExT - an exercise in functional programming'
-tags: javascript, functional, fun
+tags: javascript, functional programming, codepen
 ---
 
 import { Pen } from '../components';
 
+Ok, what the hell is "humpy text"?
+
+Naming things is hard, but basically this is an experiment in functional programming - just for fun. When the user inputs text into the textarea, the case of each alternating character is changed, resulting in HuMpY tExT.
+
 <Pen hash="MWWoPJK" height="375" defaultTab="result" editable={false} />
+
+## About functional programming
+
+Functional programming is a programming paradigm that emphasizes the use of functions as the building blocks of software. In functional programming, functions are treated as first-class citizens, meaning that they can be passed around as arguments to other functions, returned as values from functions, and stored in variables.
+
+JavaScript, being a multi-paradigm language, can be used for functional programming. Here are some key features of functional programming in JavaScript:
+
+1. Pure functions: A pure function is a function that does not modify any external state and always returns the same output given the same input. In JavaScript, pure functions can be created by avoiding side-effects and mutation of data.
+
+2. Immutability: Functional programming emphasizes the use of immutable data structures. This means that once a variable is set, its value cannot be changed. Instead, new data structures are created to represent modified values.
+
+3. Higher-order functions: Functions that take other functions as arguments or return functions as their output are called higher-order functions. Higher-order functions allow for the creation of more abstract and reusable code.
+
+4. Recursion: Recursion is a technique used in functional programming where a function calls itself until a base case is reached. This allows for the creation of more elegant and concise code.
+
+## How does it work?
+
+This code defines a function called `convertArrayToHumpyCaseAndPrint` that takes an input string, splits it into an array of characters, applies a series of modifications to each character, converts the array to a string, and then updates the text content of a textarea with the resulting string.
+
+The modifications are performed by the `modArray` function, which takes an array of characters and applies a series of transformations to each one. These transformations include toggling the case of letters, skipping non-alphabetic characters, and pushing each modified character to a result array. The `modArray` function uses a functional programming approach, with functions like `pipe` and `reduce` to combine a series of smaller functions into a larger one.
+
+The `convertArrayToHumpyCaseAndPrint` function itself uses the `pipe` function to chain together a series of smaller functions, including `splitChars`, `logIt`, `modArray`, `joinResult`, and `updateOutput`. Each of these functions takes a single input (essential to functional programming) and returns an output, which is then passed as the input to the next function in the chain. The `logIt` function is used to output the intermediate results of the processing for debugging purposes.
+
+The code also includes event listeners to update the output element when the user enters text into the input element. When the user types into the input field, the `modifyText` function is called, which in turn calls `convertArrayToHumpyCaseAndPrint` with the current value of the input field. Finally, the `updateOutput` function is called to initialize the output element with the default text "Enter some text".
+
+Overall, this code demonstrates the use of functional programming techniques to manipulate data in JavaScript, and how these techniques can be used to create modular and reusable code.
