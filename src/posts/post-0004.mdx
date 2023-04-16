@@ -36,6 +36,28 @@ The modifications are performed by the `modArray` function, which takes an array
 
 The `convertArrayToHumpyCaseAndPrint` function itself uses the `pipe` function to chain together a series of smaller functions, including `splitChars`, `logIt`, `modArray`, `joinResult`, and `updateOutput`. Each of these functions takes a single input (essential to functional programming) and returns an output, which is then passed as the input to the next function in the chain. The `logIt` function is used to output the intermediate results of the processing for debugging purposes.
 
+As an aside, the `pipe` function is written in two fashions - as an arrow function, and also as a "classic" function, just to demonstrate the appearance of both. (The underscore at the end of the arrow function version is simply to use a different name).
+
+```JavaScript
+// classic function
+function pipe(...fns) {
+    return function (result) {
+        fns.reduce(function (val, fn) {
+            // debugger;
+            return fn(val);
+        }, result);
+    };
+}
+```
+
+vs.
+
+```JavaScript
+// arrow function version
+const pipe_ = (...fns) => (accumulator) =>
+    fns.reduce((fn, reducer) => reducer(fn), accumulator);
+```
+
 The code also includes event listeners to update the output element when the user enters text into the input element. When the user types into the input field, the `modifyText` function is called, which in turn calls `convertArrayToHumpyCaseAndPrint` with the current value of the input field. Finally, the `updateOutput` function is called to initialize the output element with the default text "Enter some text".
 
 Overall, this code demonstrates the use of functional programming techniques to manipulate data in JavaScript, and how these techniques can be used to create modular and reusable code.
