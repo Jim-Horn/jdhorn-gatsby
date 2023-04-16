@@ -7,7 +7,7 @@ export default function TagPageTemplate({ data, pageContext }) {
   const { nodes } = data.allMdx;
   return (
     <Layout>
-      <h1>Posts that are tagged "{tag}"</h1>
+      <h1>Posts tagged "{tag}"</h1>
       <ul>
         {nodes.map(node => {
           const { slug, title, date, dateDiff } = node.frontmatter;
