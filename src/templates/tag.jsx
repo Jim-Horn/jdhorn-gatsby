@@ -13,14 +13,14 @@ export default function TagPageTemplate({ data, pageContext }) {
           const { slug, title, date, dateDiff } = node.frontmatter;
           return (
             <li>
-              <Link to={`/posts${slug}`}>{title}</Link>{' '}
-              <small>
-                {date} ({dateDiff})
-              </small>
+              <Link to={`/posts${slug}`} title={`${date} (${dateDiff})`}>
+                {title}
+              </Link>
             </li>
           );
         })}
       </ul>
+      <Link to="/tags">All tags</Link>
     </Layout>
   );
 }
@@ -41,6 +41,6 @@ export const tags = graphql`
     }
   }
 `;
-export const Head = ({ data, pageContext }) => (
+export const Head = ({ pageContext }) => (
   <Seo title={`Posts tagged with ${pageContext.tag}`} />
 );

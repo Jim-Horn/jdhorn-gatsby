@@ -43,12 +43,9 @@ const Posts = ({ heading = 'All posts' }) => {
             <PostListItem key={id}>
               <Link
                 to={'/posts' + post.frontmatter.slug}
-                title={post.frontmatter.seoTitle}>
+                title={`${post.frontmatter.date} (${post.frontmatter.dateDiff})`}>
                 {post.frontmatter.title}
-              </Link>{' '}
-              <small>
-                {post.frontmatter.date} ({post.frontmatter.dateDiff})
-              </small>
+              </Link>
             </PostListItem>
           ))
         ) : (
