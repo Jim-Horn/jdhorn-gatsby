@@ -47,7 +47,7 @@ const ListTags = tags => {
         tag = tag.trim();
         return (
           <TagListItem key={index}>
-            <Link to={`${tagPage}/${tag}`}>{tag}</Link>
+            <Link to={`${tagPage}/${tag.toLowerCase()}`}>{tag}</Link>
           </TagListItem>
         );
       })}
