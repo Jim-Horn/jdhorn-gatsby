@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'gatsby';
 import { Seo, Posts } from '../components/';
 
 const CenteredContent = styled.main`
@@ -22,6 +22,10 @@ const HomePage = () => (
       <h1>Hi</h1>
       <p>You've arrived at jdhorn.com - a work in progress</p>
       <Posts />
+      <p>
+        If you're looking for other info, check out the{' '}
+        <Link to="/sitemap">SiteMap</Link>
+      </p>
     </div>
   </CenteredContent>
 );

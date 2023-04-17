@@ -61,6 +61,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           (acc, node) => acc.concat(node.frontmatter.tags.split(', ')),
           []
         )
+        .map(tag => tag.toLowerCase())
         .sort()
     ),
   ];
