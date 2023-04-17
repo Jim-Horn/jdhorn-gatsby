@@ -1,3 +1,4 @@
+import ExternalLink from './ExternalLink';
 import Header from './header';
 import Layout from './layout';
 import ListTags from './ListTags';
@@ -7,4 +8,14 @@ import Seo from './seo';
 import SiteMap from './sitemap';
 import Tags from './Tags';
 
-export { Header, Layout, ListTags, Pen, Posts, Seo, SiteMap, Tags };
+export {
+  ExternalLink,
+  Header,
+  Layout,
+  ListTags,
+  Pen,
+  Posts,
+  Seo,
+  SiteMap,
+  Tags,
+};
