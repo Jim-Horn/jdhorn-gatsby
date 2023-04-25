@@ -13,7 +13,7 @@
     "gatsby-plugin-image": "^3.5.0",
     "gatsby-plugin-manifest": "^5.5.0",
     "gatsby-plugin-mdx": "^5.7.0",
-    "gatsby-plugin-sharp": "^5.5.0",
+    "gatsby-plugin-sharp": "^5.8.1",
     "gatsby-plugin-styled-components": "^6.5.0",
     "gatsby-source-filesystem": "^5.7.0",
     "gatsby-transformer-sharp": "^5.5.0",
