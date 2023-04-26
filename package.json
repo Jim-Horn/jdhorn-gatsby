@@ -6,27 +6,27 @@
   "author": "Jim Horn <jim@jdhorn.com>",
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
-    "babel-plugin-styled-components": "^2.0.7",
-    "gatsby": "^5.5.0",
+    "babel-plugin-styled-components": "^2.1.1",
+    "gatsby": "^5.9.0",
     "gatsby-plugin-google-analytics": "^5.9.0",
-    "gatsby-plugin-google-tagmanager": "^5.5.0",
-    "gatsby-plugin-image": "^3.5.0",
-    "gatsby-plugin-manifest": "^5.5.0",
-    "gatsby-plugin-mdx": "^5.7.0",
-    "gatsby-plugin-sharp": "^5.8.1",
-    "gatsby-plugin-styled-components": "^6.5.0",
-    "gatsby-source-filesystem": "^5.7.0",
-    "gatsby-transformer-sharp": "^5.5.0",
+    "gatsby-plugin-google-tagmanager": "^5.9.0",
+    "gatsby-plugin-image": "^3.9.0",
+    "gatsby-plugin-manifest": "^5.9.0",
+    "gatsby-plugin-mdx": "^5.9.0",
+    "gatsby-plugin-sharp": "^5.9.0",
+    "gatsby-plugin-styled-components": "^6.9.0",
+    "gatsby-source-filesystem": "^5.9.0",
+    "gatsby-transformer-sharp": "^5.9.0",
     "react": "^18.2.0",
     "react-codepen-embed": "^1.1.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/mdx": "^2.3.0",
     "loader-utils": "^3.2.1",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.8"
   },
   "keywords": [
     "gatsby"
