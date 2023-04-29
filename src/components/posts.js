@@ -29,6 +29,7 @@ const Posts = ({ heading = 'All posts' }) => {
           internal {
             type
           }
+          excerpt
         }
       }
     }
@@ -39,15 +40,17 @@ const Posts = ({ heading = 'All posts' }) => {
       <h2>{heading}</h2>
       <PostList>
         {nodes ? (
-          nodes.map((post, id) => (
-            <PostListItem key={id}>
-              <Link
-                to={'/posts' + post.frontmatter.slug}
-                title={`${post.frontmatter.date} (${post.frontmatter.dateDiff})`}>
-                {post.frontmatter.title}
-              </Link>
-            </PostListItem>
-          ))
+          nodes.map(
+            ({ id, frontmatter: { title, slug, date, dateDiff }, excerpt }) => (
+              <PostListItem key={id}>
+                <Link
+                  to={`/posts${slug}`}
+                  title={`${excerpt && excerpt + '\n\n'}${date} (${dateDiff})`}>
+                  {title}
+                </Link>
+              </PostListItem>
+            )
+          )
         ) : (
           <p>No posts found</p>
         )}
