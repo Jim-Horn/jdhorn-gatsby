@@ -15,6 +15,7 @@ module.exports = {
     siteUrl: `https://jdhorn.com/`,
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
     `gatsby-plugin-mdx`,
     {

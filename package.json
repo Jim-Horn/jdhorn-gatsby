@@ -25,6 +25,7 @@
   "devDependencies": {
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/mdx": "^2.3.0",
+    "gatsby-plugin-netlify": "^5.1.0",
     "loader-utils": "^3.2.1",
     "prettier": "^2.8.8"
   },
