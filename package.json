@@ -20,7 +20,7 @@
     "react": "^18.2.0",
     "react-codepen-embed": "^1.1.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.0.0-rc.2"
+    "styled-components": "^6.0.0-rc.3"
   },
   "devDependencies": {
     "@mdx-js/loader": "^2.3.0",
