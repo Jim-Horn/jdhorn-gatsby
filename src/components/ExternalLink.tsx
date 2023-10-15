@@ -5,7 +5,7 @@ const ExternalLink = ({
   text,
 }: {
   children: string;
-  text: string;
+  text?: string;
 }) => {
   return (
     <a href={children} rel="noopener noreferrer" target="_blank">

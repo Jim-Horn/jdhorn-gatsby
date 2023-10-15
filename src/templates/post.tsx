@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { graphql, Link } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { Layout, ListTags, Seo } from '../components';
@@ -14,7 +14,21 @@ const ContentSection = styled.section`
   margin-bottom: 1rem;
 `;
 
-export default function PageTemplate({ data, children }) {
+interface PageTemplateProps {
+  data: {
+    mdx: {
+      frontmatter: {
+        date: string;
+        dateDiff: string;
+        tags: string[];
+        title: string;
+      };
+    };
+  };
+  children: ReactNode;
+}
+
+export default function PageTemplate({ data, children }: PageTemplateProps) {
   const { frontmatter } = data.mdx;
   const { date, dateDiff, tags, title } = frontmatter;
   return (
@@ -47,4 +61,16 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }) => <Seo title={data.mdx.frontmatter.seoTitle} />;
+interface HeadProps {
+  data: {
+    mdx: {
+      frontmatter: {
+        seoTitle: string;
+      };
+    };
+  };
+}
+
+export const Head = ({ data }: HeadProps) => (
+  <Seo title={data.mdx.frontmatter.seoTitle} description={''} children={undefined} />
+);
