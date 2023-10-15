@@ -8,6 +8,6 @@ const SiteMapPage = () => (
   </Layout>
 );
 
-export const Head = () => <Seo title="Site Map" />;
+export const Head = () => <Seo title="Site Map" description={''} children={undefined} />;
 
 export default SiteMapPage;

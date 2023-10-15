@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { Seo, Posts } from '../components/';
+import { Seo, Posts } from '../components';
 
 const CenteredContent = styled.main`
   display: flex;
@@ -30,6 +30,6 @@ const HomePage = () => (
   </CenteredContent>
 );
 
-export const Head = () => <Seo title="Home" />;
+export const Head = () => <Seo title="Home" description={''} children={undefined} />;
 
 export default HomePage;

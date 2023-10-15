@@ -8,6 +8,6 @@ const TagsPage = () => (
   </Layout>
 );
 
-export const Head = () => <Seo title="All tags" />;
+export const Head = () => <Seo title="All tags" description={''} children={undefined} />;
 
 export default TagsPage;
