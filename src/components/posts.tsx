@@ -1,9 +1,24 @@
 import * as React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+
+type PostsProps = {
+  heading?: string;
+}
+
+type PostNode = {
+  id: string;
+  frontmatter: {
+    title: string;
+    slug: string;
+    date: string;
+    dateDiff: string;
+  };
+  excerpt: string;
+}
 
 const PostListItem = styled.li``;
+
 const PostList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -13,11 +28,12 @@ const PostList = styled.ul`
   }
 `;
 
-const Posts = ({ heading = 'All posts' }) => {
+const Posts: React.FC<PostsProps> = ({ heading = 'All posts' }) => {
   const data = useStaticQuery(graphql`
     query {
       allMdx(sort: { frontmatter: { date: DESC } }) {
         nodes {
+          id
           frontmatter {
             slug
             date
@@ -26,31 +42,30 @@ const Posts = ({ heading = 'All posts' }) => {
             title
             tags
           }
-          internal {
-            type
-          }
           excerpt
         }
       }
     }
   `);
-  const { nodes } = data.allMdx;
+
+  const nodes: PostNode[] = data.allMdx.nodes || [];
+
   return (
     <section>
       <h2>{heading}</h2>
       <PostList>
-        {nodes ? (
-          nodes.map(
-            ({ id, frontmatter: { title, slug, date, dateDiff }, excerpt }) => (
-              <PostListItem key={id}>
-                <Link
-                  to={`/posts${slug}`}
-                  title={`${excerpt && excerpt + '\n\n'}${date} (${dateDiff})`}>
-                  {title}
-                </Link>
-              </PostListItem>
-            )
-          )
+        {nodes.length ? (
+          nodes.map(({ id, frontmatter, excerpt }) => (
+            <PostListItem key={id}>
+              <Link
+                to={`/posts${frontmatter.slug}`}
+                title={`${excerpt && `${excerpt}\n\n`}${frontmatter.date} (${
+                  frontmatter.dateDiff
+                })`}>
+                {frontmatter.title}
+              </Link>
+            </PostListItem>
+          ))
         ) : (
           <p>No posts found</p>
         )}
