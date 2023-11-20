@@ -48,5 +48,8 @@
   },
   "bugs": {
     "url": "https://github.com/Jim-Horn/jdhorn-gatsby/issues"
+  },
+  "resolutions": {
+    "axios": "^1.6.0"
   }
 }
