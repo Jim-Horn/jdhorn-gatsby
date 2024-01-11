@@ -1,11 +1,44 @@
-const path = require('path');
+import { GatsbyNode } from 'gatsby';
+import path from 'path';
+
 const postTemplate = path.resolve(`./src/templates/post.tsx`);
 const tagPageTemplate = path.resolve(`./src/templates/tag.tsx`);
+const contentfulPageTemplate = path.resolve(
+  `./src/templates/contentfulPost.tsx`,
+);
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions;
 
-  const result = await graphql(`
+  // Define types for your query results
+  type MdxQueryResult = {
+    allMdx: {
+      nodes: {
+        id: string;
+        frontmatter: {
+          slug: string;
+          tags?: string;
+        };
+        internal: {
+          contentFilePath: string;
+        };
+      }[];
+    };
+  };
+
+  type ContentfulQueryResult = {
+    allContentfulPost: {
+      nodes: {
+        slug: string;
+      }[];
+    };
+  };
+
+  const mdxPages: { data?: MdxQueryResult; errors?: any } = await graphql(`
     query {
       allMdx {
         nodes {
@@ -21,7 +54,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  const allTags = await graphql(`
+  const contentfulPosts: { data?: ContentfulQueryResult; errors?: any } =
+    await graphql(`
+      query {
+        allContentfulPost {
+          nodes {
+            slug
+          }
+        }
+      }
+    `);
+
+  const allTags: { data?: MdxQueryResult; errors?: any } = await graphql(`
     query {
       allMdx {
         nodes {
@@ -33,40 +77,42 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (result.errors || allTags.erros) {
-    reporter.panicOnBuild('Error loading MDX result', result.errors);
+  if (mdxPages.errors || contentfulPosts.errors || allTags.errors) {
+    reporter.panicOnBuild('Error loading MDX result', mdxPages.errors);
+    return;
   }
 
-  const posts = result.data.allMdx.nodes;
+  const posts = mdxPages.data?.allMdx.nodes;
 
-  posts.forEach(node => {
+  posts?.forEach(node => {
     createPage({
-      // As mentioned above you could also query something else like frontmatter.title above and use a helper function
-      // like slugify to create a slug
-      path: '/posts' + node.frontmatter.slug,
-      // Provide the path to the MDX content file so webpack can pick it up and transform it into JSX
+      path: '/old-md' + node.frontmatter.slug,
       component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-      // You can use the values in this context in
-      // our page layout component
       context: { id: node.id },
     });
   });
 
-  const { nodes } = allTags.data.allMdx;
+  const nodes = allTags.data?.allMdx.nodes;
 
-  const tags = [
-    ...new Set(
-      nodes
-        .reduce(
-          (acc, node) => acc.concat(node.frontmatter.tags.split(', ')),
-          []
-        )
-        .map(tag => tag.toLowerCase())
-        .sort()
-    ),
-  ];
+  contentfulPosts.data?.allContentfulPost.nodes.forEach(node => {
+    createPage({
+      path: '/posts' + node.slug,
+      component: `${contentfulPageTemplate}`,
+      context: { slug: node.slug },
+    });
+  });
 
-  tags.forEach(tag => {
+  const tags = nodes
+    ?.reduce((acc, node) => {
+      const tags = node.frontmatter.tags?.split(', ') ?? [];
+      return acc.concat(tags);
+    }, [] as string[])
+    .map(tag => tag.toLowerCase())
+    .sort();
+
+  const uniqueTags = [...new Set(tags)];
+
+  uniqueTags.forEach(tag => {
     createPage({
       path: '/tag/' + tag,
       component: tagPageTemplate,
