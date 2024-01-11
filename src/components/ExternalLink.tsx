@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import * as React from 'react';
 
 const ExternalLink = ({
@@ -15,3 +16,12 @@ const ExternalLink = ({
 };
 
 export default ExternalLink;
+
+export const query = graphql`
+  fragment ExternalLink on ContentfulExternalLink {
+    __typename
+    contentful_id
+    url
+    text
+  }
+`;

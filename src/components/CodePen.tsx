@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import * as React from 'react';
 import Codepen from 'react-codepen-embed';
 
@@ -26,3 +27,15 @@ const Pen: React.FC<PenProps> = ({
 );
 
 export default Pen;
+
+export const query = graphql`
+  fragment Pen on ContentfulCodePen {
+    contentful_id
+    __typename
+    hash
+    editable
+    height
+    defaultTab
+    showResult
+  }
+`;
