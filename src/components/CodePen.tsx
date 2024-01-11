@@ -6,7 +6,7 @@ type PenProps = {
   height?: number;
   defaultTab?: string;
   editable?: boolean;
-}
+};
 
 const Pen: React.FC<PenProps> = ({
   hash,
