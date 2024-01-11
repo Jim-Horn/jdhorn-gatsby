@@ -20,7 +20,7 @@ interface PageTemplateProps {
       frontmatter: {
         date: string;
         dateDiff: string;
-        tags: string[];
+        tags: string;
         title: string;
       };
     };
@@ -72,5 +72,9 @@ interface HeadProps {
 }
 
 export const Head = ({ data }: HeadProps) => (
-  <Seo title={data.mdx.frontmatter.seoTitle} description={''} children={undefined} />
+  <Seo
+    title={data.mdx.frontmatter.seoTitle}
+    description={''}
+    children={undefined}
+  />
 );
