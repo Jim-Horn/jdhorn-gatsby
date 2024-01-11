@@ -38,7 +38,7 @@ const TagList = styled.ul`
   }
 `;
 
-const ListTags = (tags: { tags: string; }) => {
+const ListTags = (tags: { tags: string }) => {
   const tagArr = tags.tags.split(',');
   const tagPage = `/tag`;
   return (

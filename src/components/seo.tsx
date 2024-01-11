@@ -8,20 +8,24 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function Seo({ description, title, children }:{description: string, title: string, children?: React.ReactNode}) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+interface SeoProps {
+  description: string;
+  title: string;
+  children?: React.ReactNode;
+}
+
+function Seo({ description, title, children }: SeoProps) {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `
-  );
+    }
+  `);
 
   const metaDescription = description || site.siteMetadata.description;
   const defaultTitle = site.siteMetadata?.title;
