@@ -16,8 +16,8 @@ const SiteMap = () => {
   `);
   return (
     <ul>
-      {data.allSitePage.edges.map((node: { node: { path: string; }; }) => (
-        <li>
+      {data.allSitePage.edges.map((node: { node: { path: string } }) => (
+        <li key={node.node.path}>
           <Link to={node.node.path}>{node.node.path}</Link>
         </li>
       ))}

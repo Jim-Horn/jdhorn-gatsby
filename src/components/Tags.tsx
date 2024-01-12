@@ -2,11 +2,10 @@ import * as React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 interface TagQueryData {
-  allMdx: {
+  allContentfulPostTags: {
     nodes: Array<{
-      frontmatter: {
-        tags: string;
-      };
+      tag: string;
+      friendlyName: string;
     }>;
   };
 }
@@ -14,38 +13,27 @@ interface TagQueryData {
 const Tags: React.FC = () => {
   const data = useStaticQuery<TagQueryData>(graphql`
     query {
-      allMdx {
+      allContentfulPostTags(sort: { friendlyName: ASC }) {
         nodes {
-          frontmatter {
-            tags
-          }
+          tag
+          friendlyName
         }
       }
     }
   `);
 
-  const { nodes } = data.allMdx;
-
-  const tags: string[] = [
-    ...new Set(
-      nodes
-        .reduce(
-          (acc: string[], node) =>
-            acc.concat(node.frontmatter.tags.split(', ')),
-          [],
-        )
-        .map((tag: string) => tag.toLowerCase())
-        .sort(),
-    ),
-  ];
+  const { nodes } = data.allContentfulPostTags;
 
   return (
     <ul>
-      {tags.map((tag, index) => (
-        <li key={index}>
-          <Link to={`/tag/${tag}`}>{tag}</Link>
-        </li>
-      ))}
+      {nodes.map((node, index) => {
+        const { tag, friendlyName } = node;
+        return (
+          <li key={index}>
+            <Link to={`/tag/${tag}`}>{friendlyName}</Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };

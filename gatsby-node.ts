@@ -64,14 +64,21 @@ export const createPages: GatsbyNode['createPages'] = async ({
         }
       }
     `);
+  interface TagQueryResult {
+    allContentfulPostTags: {
+      nodes: {
+        tag: string;
+        friendlyName: string;
+      }[];
+    };
+  }
 
-  const allTags: { data?: MdxQueryResult; errors?: any } = await graphql(`
+  const allTags: { data?: TagQueryResult; errors?: any } = await graphql(`
     query {
-      allMdx {
+      allContentfulPostTags(sort: { tag: ASC }) {
         nodes {
-          frontmatter {
-            tags
-          }
+          tag
+          friendlyName
         }
       }
     }
@@ -92,8 +99,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   });
 
-  const nodes = allTags.data?.allMdx.nodes;
-
   contentfulPosts.data?.allContentfulPost.nodes.forEach(node => {
     createPage({
       path: '/posts' + node.slug,
@@ -102,23 +107,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   });
 
-  const tags = nodes
-    ?.reduce((acc, node) => {
-      const tags = node.frontmatter.tags?.split(', ') ?? [];
-      return acc.concat(tags);
-    }, [] as string[])
-    .map(tag => tag.toLowerCase())
-    .sort();
-
-  const uniqueTags = [...new Set(tags)];
-
-  uniqueTags.forEach(tag => {
+  allTags?.data?.allContentfulPostTags.nodes.forEach(node => {
     createPage({
-      path: '/tag/' + tag,
+      path: '/tag/' + node.tag,
       component: tagPageTemplate,
       context: {
-        tagRegex: `/${tag}/i`,
-        tag,
+        tag: node,
+        tagRegex: `/${node.tag}/i`,
       },
     });
   });
