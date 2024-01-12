@@ -4,19 +4,18 @@ import { Layout, Seo } from '../components';
 
 interface TagPageTemplateProps {
   data: {
-    allMdx: {
+    allContentfulPost: {
       nodes: Array<{
-        frontmatter: {
-          slug: string;
-          title: string;
-          date: string;
-          dateDiff: string;
-        };
+        slug: string;
+        title: string;
+        date: string;
+        dateDiff: string;
       }>;
     };
   };
   pageContext: {
-    tag: string;
+    tag: { tag: string; friendlyName: string };
+    tagRegex: string;
   };
 }
 
@@ -24,14 +23,13 @@ export default function TagPageTemplate({
   data,
   pageContext,
 }: TagPageTemplateProps) {
-  const { tag } = pageContext;
-  const { nodes } = data.allMdx;
+  const { nodes } = data.allContentfulPost;
   return (
     <Layout>
-      <h1>Posts tagged "{tag}"</h1>
+      <h1>Posts tagged "{pageContext.tag.friendlyName}"</h1>
       <ul>
         {nodes.map((node, index) => {
-          const { slug, title, date, dateDiff } = node.frontmatter;
+          const { slug, title, date, dateDiff } = node;
           return (
             <li key={index}>
               <Link to={`/posts${slug}`} title={`${date} (${dateDiff})`}>
@@ -48,15 +46,17 @@ export default function TagPageTemplate({
 
 export const tags = graphql`
   query ($tagRegex: String!) {
-    allMdx(filter: { frontmatter: { tags: { regex: $tagRegex } } }) {
+    allContentfulPost(
+      filter: { postTags: { elemMatch: { tag: { regex: $tagRegex } } } }
+    ) {
       nodes {
-        frontmatter {
-          slug
-          date
-          dateDiff: date(fromNow: true)
-          seoTitle
-          title
-          tags
+        date
+        dateDiff: date(fromNow: true)
+        title
+        slug
+        postTags {
+          tag
+          friendlyName
         }
       }
     }

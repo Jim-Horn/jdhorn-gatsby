@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { options } from '../utils/options';
 
+const consolidatePostTags = (postTags: any) => {
+  const tags = postTags.map((tag: any) => tag.tag);
+  return tags.join(',');
+};
+
 const Date = styled.span`
   font-size: small;
 `;
@@ -31,6 +36,10 @@ interface ContentfulPageTemplateProps {
       seoTitle: string;
       slug: string;
       tags?: string;
+      postTags?: {
+        tag: string;
+        friendlyName: string;
+      }[];
       title: string;
     };
   };
@@ -40,7 +49,7 @@ interface ContentfulPageTemplateProps {
 export default function ContentfulPageTemplate({
   data,
 }: ContentfulPageTemplateProps) {
-  const { content, date, dateDiff, title, tags } = data.contentfulPost;
+  const { content, date, dateDiff, title, postTags } = data.contentfulPost;
 
   return (
     <Layout>
@@ -49,7 +58,7 @@ export default function ContentfulPageTemplate({
         <Date title={dateDiff}>{date}</Date>
       </HeadingSection>
       <ContentSection>{renderRichText(content, options)}</ContentSection>
-      {tags && <ListTags tags={tags} />}
+      {postTags && <ListTags tags={consolidatePostTags(postTags)} />}
     </Layout>
   );
 }
@@ -62,7 +71,10 @@ export const query = graphql`
       dateDiff: date(fromNow: true)
       date(formatString: "dddd, MMMM DD, YYYY")
       seoTitle
-      tags
+      postTags {
+        tag
+        friendlyName
+      }
       content {
         raw
         references {
