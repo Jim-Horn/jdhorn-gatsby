@@ -6,6 +6,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { getTabs } from './getTabs';
+import { Link } from 'gatsby';
 
 interface ChildProps {
   children: ReactNode;
@@ -72,6 +73,21 @@ export const options: Options = {
           <pre>
             <code>{JSON.stringify(node, null, 2)}</code>
           </pre>
+        </>
+      );
+    },
+    [INLINES.ENTRY_HYPERLINK]: (node: any, children: React.ReactNode) => {
+      if (node.data.target.__typename === 'ContentfulPost') {
+        const { slug, title } = node.data.target;
+        return (
+          <Link to={`/posts${slug}`} title={title}>
+            {children}
+          </Link>
+        );
+      }
+      return (
+        <>
+          <pre>{JSON.stringify(node, null, 2)}</pre>
         </>
       );
     },
