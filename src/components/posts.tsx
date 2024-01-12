@@ -2,21 +2,6 @@ import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
-type PostsProps = {
-  heading?: string;
-}
-
-type PostNode = {
-  id: string;
-  frontmatter: {
-    title: string;
-    slug: string;
-    date: string;
-    dateDiff: string;
-  };
-  excerpt: string;
-}
-
 const PostListItem = styled.li``;
 
 const PostList = styled.ul`
@@ -28,41 +13,44 @@ const PostList = styled.ul`
   }
 `;
 
+interface PostsProps {
+  heading?: string;
+}
+
+interface Post {
+  contentful_id: string;
+  slug: string;
+  date: string;
+  dateDiff: string;
+  title: string;
+}
+
 const Posts: React.FC<PostsProps> = ({ heading = 'All posts' }) => {
   const data = useStaticQuery(graphql`
     query {
-      allMdx(sort: { frontmatter: { date: DESC } }) {
+      allContentfulPost(sort: { updatedAt: DESC }) {
         nodes {
-          id
-          frontmatter {
-            slug
-            date
-            dateDiff: date(fromNow: true)
-            seoTitle
-            title
-            tags
-          }
-          excerpt
+          contentful_id
+          slug
+          date
+          dateDiff: date(fromNow: true)
+          title
         }
       }
     }
   `);
 
-  const nodes: PostNode[] = data.allMdx.nodes || [];
+  const { nodes } = data.allContentfulPost;
 
   return (
     <section>
       <h2>{heading}</h2>
       <PostList>
         {nodes.length ? (
-          nodes.map(({ id, frontmatter, excerpt }) => (
-            <PostListItem key={id}>
-              <Link
-                to={`/posts${frontmatter.slug}`}
-                title={`${excerpt && `${excerpt}\n\n`}${frontmatter.date} (${
-                  frontmatter.dateDiff
-                })`}>
-                {frontmatter.title}
+          nodes.map(({ contentful_id, slug, date, dateDiff, title }: Post) => (
+            <PostListItem key={contentful_id}>
+              <Link to={`/posts${slug}`} title={`${date} (${dateDiff})`}>
+                {title}
               </Link>
             </PostListItem>
           ))
