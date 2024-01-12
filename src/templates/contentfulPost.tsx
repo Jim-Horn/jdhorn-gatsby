@@ -104,6 +104,12 @@ export const query = graphql`
               code
             }
           }
+          ... on ContentfulPost {
+            __typename
+            contentful_id
+            slug
+            title
+          }
         }
       }
     }
