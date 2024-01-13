@@ -1,7 +1,6 @@
 import { GatsbyNode } from 'gatsby';
 import path from 'path';
 
-const postTemplate = path.resolve(`./src/templates/post.tsx`);
 const tagPageTemplate = path.resolve(`./src/templates/tag.tsx`);
 const contentfulPageTemplate = path.resolve(
   `./src/templates/contentfulPost.tsx`,
@@ -14,22 +13,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
 }) => {
   const { createPage } = actions;
 
-  // Define types for your query results
-  type MdxQueryResult = {
-    allMdx: {
-      nodes: {
-        id: string;
-        frontmatter: {
-          slug: string;
-          tags?: string;
-        };
-        internal: {
-          contentFilePath: string;
-        };
-      }[];
-    };
-  };
-
   type ContentfulQueryResult = {
     allContentfulPost: {
       nodes: {
@@ -37,22 +20,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
       }[];
     };
   };
-
-  const mdxPages: { data?: MdxQueryResult; errors?: any } = await graphql(`
-    query {
-      allMdx {
-        nodes {
-          id
-          frontmatter {
-            slug
-          }
-          internal {
-            contentFilePath
-          }
-        }
-      }
-    }
-  `);
 
   const contentfulPosts: { data?: ContentfulQueryResult; errors?: any } =
     await graphql(`
@@ -84,25 +51,18 @@ export const createPages: GatsbyNode['createPages'] = async ({
     }
   `);
 
-  if (mdxPages.errors || contentfulPosts.errors || allTags.errors) {
-    reporter.panicOnBuild('Error loading MDX result', mdxPages.errors);
+  if (contentfulPosts.errors || allTags.errors) {
+    reporter.panicOnBuild(
+      'Error loading Contentful result',
+      contentfulPosts.errors,
+    );
     return;
   }
-
-  const posts = mdxPages.data?.allMdx.nodes;
-
-  posts?.forEach(node => {
-    createPage({
-      path: '/old-md' + node.frontmatter.slug,
-      component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-      context: { id: node.id },
-    });
-  });
 
   contentfulPosts.data?.allContentfulPost.nodes.forEach(node => {
     createPage({
       path: '/posts' + node.slug,
-      component: `${contentfulPageTemplate}`,
+      component: contentfulPageTemplate,
       context: { slug: node.slug },
     });
   });

@@ -32,7 +32,7 @@ const Posts: React.FC<PostsProps> = ({ heading = 'All posts' }) => {
         nodes {
           contentful_id
           slug
-          date
+          date(formatString: "ddd, MMMM DD, YYYY")
           dateDiff: date(fromNow: true)
           title
         }
