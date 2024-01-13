@@ -20,14 +20,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
-    // `gatsby-plugin-mdx`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `posts`,
-    //     path: `${__dirname}/src/posts`,
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -94,13 +86,6 @@ module.exports = {
         enableWebVitalsTracking: true,
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `content`,
-    //     path: `${__dirname}/src/posts`,
-    //   },
-    // },
     {
       resolve: `gatsby-source-contentful`,
       options: {
