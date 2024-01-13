@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-// import styled from 'styled-components';
 
 const SiteMap = () => {
   const data = useStaticQuery(graphql`
