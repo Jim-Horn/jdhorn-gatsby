@@ -79,6 +79,7 @@ export const query = graphql`
         raw
         references {
           ... on ContentfulCodePen {
+            # The graphql fragment used here is defined in the component itself
             ...Pen
           }
           ... on ContentfulExternalLink {
@@ -104,6 +105,8 @@ export const query = graphql`
               code
             }
           }
+          # see ContentfulPost in options
+          # This is the data needed to render a link to a post
           ... on ContentfulPost {
             __typename
             contentful_id
