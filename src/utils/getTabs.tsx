@@ -4,6 +4,7 @@ enum Tabs {
   JS = 'js',
   None = '',
 }
+// Used with the CodePen component to determine which tabs to show
 export const getTabs = (defaultTab: keyof typeof Tabs, showResult: boolean) => {
   const result = [];
   if (defaultTab !== 'None') {
