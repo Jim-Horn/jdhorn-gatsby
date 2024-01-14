@@ -43,7 +43,7 @@ const ListTags = (tags: { tags: string }) => {
   const tagPage = `/tag`;
   return (
     <TagList>
-      {tagArr.map((tag, index) => {
+      {tagArr.sort().map((tag, index) => {
         tag = tag.trim();
         return (
           <TagListItem key={index}>
