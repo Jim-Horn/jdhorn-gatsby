@@ -20,6 +20,7 @@ const PostList = styled.ul`
 
 interface PostsProps {
   heading?: string | null;
+  showTags?: boolean;
 }
 
 interface Post {
@@ -34,7 +35,10 @@ interface Post {
   }>;
 }
 
-const Posts: React.FC<PostsProps> = ({ heading = 'All posts' }) => {
+const Posts: React.FC<PostsProps> = ({
+  heading = 'All posts',
+  showTags = false,
+}) => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulPost(sort: { title: ASC }) {
@@ -74,7 +78,7 @@ const Posts: React.FC<PostsProps> = ({ heading = 'All posts' }) => {
                   {title}
                 </Link>
 
-                <ListTags tags={consolidatePostTags(postTags)} />
+                {showTags && <ListTags tags={consolidatePostTags(postTags)} />}
               </PostListItem>
             ),
           )
