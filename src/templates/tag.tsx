@@ -48,6 +48,7 @@ export const tags = graphql`
   query ($tagRegex: String!) {
     allContentfulPost(
       filter: { postTags: { elemMatch: { tag: { regex: $tagRegex } } } }
+      sort: { title: ASC }
     ) {
       nodes {
         date
