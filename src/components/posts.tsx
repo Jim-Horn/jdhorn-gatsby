@@ -11,6 +11,9 @@ const PostList = styled.ul`
   flex-direction: column;
 
   ${PostListItem} {
+    & > ul {
+      margin-top: 0.5rem;
+    }
     margin-bottom: 1rem;
     ul {
       margin-left: 0.5rem;

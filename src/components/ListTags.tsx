@@ -7,9 +7,10 @@ const TagList = styled.ul`
   list-style: none;
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
 
   ${TagListItem} {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
     margin-right: 0.5rem;
     &:last-child {
       margin-right: 0;
