@@ -4,11 +4,7 @@ import { Layout, ListTags, Seo } from '../components';
 import styled from 'styled-components';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { options } from '../utils/options';
-
-const consolidatePostTags = (postTags: any) => {
-  const tags = postTags.map((tag: any) => tag.tag);
-  return tags.join(',');
-};
+import { consolidatePostTags } from '../utils';
 
 const Date = styled.span`
   font-size: small;
