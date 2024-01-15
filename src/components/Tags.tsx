@@ -90,7 +90,7 @@ const Tags: React.FC = () => {
                       const { title, slug } = post;
                       return (
                         <li key={index}>
-                          <Link to={`/post/${slug}`}>{title}</Link>
+                          <Link to={`/posts${slug}`}>{title}</Link>
                         </li>
                       );
                     })}
