@@ -4,7 +4,7 @@ import { Layout, Seo, Posts } from '../components';
 const PostsPage = () => (
   <Layout>
     <h1>All posts</h1>
-    <Posts heading={null} showTags />
+    <Posts heading={null} showTags showDate />
   </Layout>
 );
 

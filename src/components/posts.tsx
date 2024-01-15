@@ -24,6 +24,7 @@ const PostList = styled.ul`
 interface PostsProps {
   heading?: string | null;
   showTags?: boolean;
+  showDate?: boolean;
 }
 
 interface Post {
@@ -41,10 +42,11 @@ interface Post {
 const Posts: React.FC<PostsProps> = ({
   heading = 'All posts',
   showTags = false,
+  showDate = false,
 }) => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulPost(sort: { title: ASC }) {
+      allContentfulPost(sort: { date: DESC }) {
         nodes {
           contentful_id
           slug
@@ -80,7 +82,12 @@ const Posts: React.FC<PostsProps> = ({
                 <Link to={`/posts${slug}`} title={`${date} (${dateDiff})`}>
                   {title}
                 </Link>
-
+                {showDate && (
+                  <>
+                    <br />
+                    <span>({`${date} (${dateDiff})`})</span>
+                  </>
+                )}
                 {showTags && <ListTags tags={consolidatePostTags(postTags)} />}
               </PostListItem>
             ),
