@@ -21,6 +21,10 @@ const PostList = styled.ul`
   }
 `;
 
+const SmallAbbr = styled.abbr`
+  font-size: 0.8rem;
+`;
+
 interface PostsProps {
   heading?: string | null;
   showTags?: boolean;
@@ -85,7 +89,7 @@ const Posts: React.FC<PostsProps> = ({
                 {showDate && (
                   <>
                     <br />
-                    <span>({`${date} (${dateDiff})`})</span>
+                    <SmallAbbr title={`About ${dateDiff}`}>{date}</SmallAbbr>
                   </>
                 )}
                 {showTags && <ListTags tags={consolidatePostTags(postTags)} />}
