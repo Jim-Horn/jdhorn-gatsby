@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Back up Contentful environment
-        uses: Jim-Horn/contentful-environment-backup-action@v1
+        uses: Jim-Horn/contentful-environment-backup@v1
         id: backup
         with:
           contentful-content-management-token: ${{secrets.D2C_CONTENTFUL_CONTENT_MANAGEMENT_TOKEN}}
