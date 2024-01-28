@@ -15,7 +15,7 @@ jobs:
         uses: Jim-Horn/contentful-environment-backup@v1.0.2
         id: backup
         with:
-          contentful-content-management-token: ${{secrets.D2C_CONTENTFUL_CONTENT_MANAGEMENT_TOKEN}}
+          contentful-content-management-token: ${{secrets.CONTENTFUL_CONTENT_MANAGEMENT_TOKEN}}
           contentful-space-id: '5fb4xoh9wju8'
           backup-name-prefix: 'master-backup'
           delete-name-prefix: 'master-backup'
