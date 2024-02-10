@@ -4,7 +4,10 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 const SiteMap = () => {
   const data = useStaticQuery(graphql`
     query {
-      allSitePage(filter: { path: { regex: "/^((?!404).)*$/" } }) {
+      allSitePage(
+        filter: { path: { regex: "/^((?!404).)*$/" } }
+        sort: { fields: path }
+      ) {
         edges {
           node {
             path
@@ -15,11 +18,15 @@ const SiteMap = () => {
   `);
   return (
     <ul>
-      {data.allSitePage.edges.map((node: { node: { path: string } }) => (
-        <li key={node.node.path}>
-          <Link to={node.node.path}>{node.node.path}</Link>
-        </li>
-      ))}
+      {data.allSitePage.edges.map((node: { node: { path: string } }) => {
+        let linkText = node.node.path;
+        linkText === '/' && (linkText = 'home');
+        return (
+          <li key={node.node.path}>
+            <Link to={node.node.path}>{linkText}</Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };
