@@ -6,7 +6,7 @@ const SiteMap = () => {
     query {
       allSitePage(
         filter: { path: { regex: "/^((?!404).)*$/" } }
-        sort: { fields: path }
+        sort: { path: ASC }
       ) {
         edges {
           node {
