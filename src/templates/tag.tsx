@@ -66,10 +66,13 @@ export const tags = graphql`
 
 interface HeadProps {
   pageContext: {
-    tag: string;
+    tag: { tag: string; friendlyName: string };
   };
 }
 
 export const Head = ({ pageContext }: HeadProps) => (
-  <Seo title={`Posts tagged with ${pageContext.tag}`} description={''} />
+  <Seo
+    title={`Posts tagged with ${pageContext.tag.friendlyName}`}
+    description={''}
+  />
 );
