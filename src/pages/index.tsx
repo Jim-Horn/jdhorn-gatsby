@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { Seo, Posts } from '../components';
+import { Seo, Posts, Layout } from '../components';
 
 const CenteredContent = styled.main`
   display: flex;
@@ -17,19 +17,19 @@ const CenteredContent = styled.main`
 `;
 
 const HomePage = () => (
-  <CenteredContent>
-    <div>
-      <h1>Hi</h1>
-      <p>You've arrived at jdhorn.com - a work in progress</p>
-      <Posts />
-      <p>
-        If you're looking for other info, check out the{' '}
-        <Link to="/sitemap">SiteMap</Link>
-      </p>
-    </div>
-  </CenteredContent>
+  <Layout>
+    <h1>Hi</h1>
+    <p>You've arrived at jdhorn.com - a work in progress</p>
+    <Posts />
+    <p>
+      If you're looking for other info, check out the{' '}
+      <Link to="/sitemap">SiteMap</Link>
+    </p>
+  </Layout>
 );
 
-export const Head = () => <Seo title="Home" description={''} children={undefined} />;
+export const Head = () => (
+  <Seo title="Home" description={''} children={undefined} />
+);
 
 export default HomePage;
