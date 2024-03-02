@@ -34,9 +34,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <StyledFooter>
           &copy; {new Date().getFullYear()} &middot; <Link to="/">Home</Link>
           &nbsp; &middot; <Link to="/contact">Contact</Link>&nbsp; &middot;{' '}
-          <Link to="/sitemap">Sitemap</Link> &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <Link to="/sitemap">Sitemap</Link> &middot;{' '}
+          <Link to="/about">About</Link> &middot;{' '}
+          <Link to="/web-toys">Web toys</Link>
         </StyledFooter>
       </StyledMainContainer>
     </>
