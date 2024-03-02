@@ -106,7 +106,11 @@ const Header: React.FC = () => {
           alt=""
         />
       )}
-      <Logo>Logo Here</Logo>
+      <Logo>
+        <Link to="/">
+          <img src="/jdhorn.gif" alt="JDHorn.com logo" />
+        </Link>
+      </Logo>
       <Menu>
         <MenuList>
           <li>
@@ -114,6 +118,10 @@ const Header: React.FC = () => {
           </li>
           <li>
             <MenuItem to="/posts">Posts</MenuItem>
+          </li>
+
+          <li>
+            <MenuItem to="/web-toys">Web toys</MenuItem>
           </li>
           <li>
             <MenuItem to="/contact">Contact</MenuItem>
