@@ -108,7 +108,12 @@ const Header: React.FC = () => {
       )}
       <Logo>
         <Link to="/">
-          <img src="/jdhorn.gif" alt="JDHorn.com logo" />
+          <img
+            src="/jdhorn-logo-white.png"
+            alt="JDHorn.com logo"
+            width={175}
+            height={38.1167}
+          />
         </Link>
       </Logo>
       <Menu>
