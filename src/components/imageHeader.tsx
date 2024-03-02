@@ -124,6 +124,9 @@ const Header: React.FC = () => {
             <MenuItem to="/web-toys">Web toys</MenuItem>
           </li>
           <li>
+            <MenuItem to="/about">About</MenuItem>
+          </li>
+          <li>
             <MenuItem to="/contact">Contact</MenuItem>
           </li>
         </MenuList>
