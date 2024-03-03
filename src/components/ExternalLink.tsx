@@ -2,15 +2,15 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 
 const ExternalLink = ({
+  href,
   children,
-  text,
 }: {
-  children: string;
-  text?: string;
+  href: string;
+  children?: React.ReactNode;
 }) => {
   return (
-    <a href={children} rel="noopener noreferrer" target="_blank">
-      {text || children}
+    <a href={href} rel="noopener noreferrer" target="_blank">
+      {children || href}
     </a>
   );
 };

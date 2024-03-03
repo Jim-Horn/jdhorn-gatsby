@@ -8,19 +8,20 @@ const SiteMapPage = () => (
     <p>Some places to try reaching out:</p>
     <ul>
       <li>
-        GitHub: <ExternalLink>https://github.com/Jim-Horn</ExternalLink>
+        GitHub: <ExternalLink href="https://github.com/Jim-Horn" />
       </li>
       <li>
-        LinkedIn:{' '}
-        <ExternalLink>https://www.linkedin.com/in/jdhorn/</ExternalLink>
+        LinkedIn: <ExternalLink href="https://www.linkedin.com/in/jdhorn/" />
       </li>
       <li>
-        Twitter: <ExternalLink>https://twitter.com/jdhorn</ExternalLink>
+        Twitter: <ExternalLink href="https://twitter.com/jdhorn" />
       </li>
     </ul>
   </Layout>
 );
 
-export const Head = () => <Seo title="Contact me" description={''} children={undefined} />;
+export const Head = () => (
+  <Seo title="Contact me" description={''} children={undefined} />
+);
 
 export default SiteMapPage;
