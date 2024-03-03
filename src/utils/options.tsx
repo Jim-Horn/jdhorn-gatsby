@@ -131,7 +131,7 @@ export const options: Options = {
     [INLINES.EMBEDDED_ENTRY]: (node: any) => {
       if (node.data.target.__typename === 'ContentfulExternalLink') {
         const { url, text } = node.data.target as ContentfulExternalLink;
-        return <ExternalLink text={text || url}>{url}</ExternalLink>;
+        return <ExternalLink href={url}>{text || url}</ExternalLink>;
       }
       return (
         <>

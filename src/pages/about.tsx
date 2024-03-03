@@ -25,24 +25,24 @@ const SiteMapPage = () => (
       </p>
       <p>
         Hosting this site comes at almost no cost, thanks to the generosity of{' '}
-        <ExternalLink text="Netlify's free tier">
-          https://www.netlify.com/pricing/
+        <ExternalLink href="https://www.netlify.com/pricing/">
+          Netlify's free tier
         </ExternalLink>
         ,{' '}
-        <ExternalLink text="Contentful's free content management capabilities">
-          https://www.contentful.com/pricing/
+        <ExternalLink href="https://www.contentful.com/pricing/">
+          Contentful's free content management capabilities
         </ExternalLink>
         , and{' '}
-        <ExternalLink text="GitHub's robust version control">
-          https://github.com/pricing
+        <ExternalLink href="https://github.com/pricing">
+          GitHub's robust version control
         </ExternalLink>
-        —all underpinned by the minimal expense of domain registration. It's a
+        — all underpinned by the minimal expense of domain registration. It's a
         testament to the power and accessibility of modern web development
         tools. I even code in{' '}
-        <ExternalLink text="VS Code">
-          https://code.visualstudio.com/
+        <ExternalLink href="https://code.visualstudio.com/">
+          VS Code
         </ExternalLink>{' '}
-        —Also free. It's a great time to be a web developer!
+        — also free. It's a great time to be a web developer!
       </p>
       <p>
         As I continue to explore and expand my skill set, particularly diving
