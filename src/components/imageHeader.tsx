@@ -21,11 +21,18 @@ interface QueryResult {
 
 const HeaderWrapper = styled.header`
   position: relative;
+  height: 20rem;
+`;
+
+const HeaderContentContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 20rem;
+  max-width: 54rem;
   color: #fff;
+  margin: 0 auto;
 `;
 
 const Logo = styled.div`
@@ -33,6 +40,11 @@ const Logo = styled.div`
   top: 20px;
   left: 20px;
   z-index: 2;
+  max-width: 40%;
+  img {
+    max-width: 175px;
+    width: 100%;
+  }
 `;
 
 const Menu = styled.nav`
@@ -40,6 +52,7 @@ const Menu = styled.nav`
   top: 20px;
   right: 20px;
   z-index: 2;
+  max-width: 50%;
 `;
 
 const MenuList = styled.ul`
@@ -49,6 +62,8 @@ const MenuList = styled.ul`
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 `;
 
 const MenuItem = styled(Link)`
@@ -106,36 +121,37 @@ const Header: React.FC = () => {
           alt=""
         />
       )}
-      <Logo>
-        <Link to="/">
-          <img
-            src="/jdhorn-logo-white.png"
-            alt="JDHorn.com logo"
-            width={175}
-            height={38.1167}
-          />
-        </Link>
-      </Logo>
-      <Menu>
-        <MenuList>
-          <li>
-            <MenuItem to="/">Home</MenuItem>
-          </li>
-          <li>
-            <MenuItem to="/posts">Posts</MenuItem>
-          </li>
+      <HeaderContentContainer>
+        <Logo>
+          <Link to="/">
+            <img
+              src="/jdhorn-logo-white.png"
+              alt="JDHorn.com logo"
+              title="JDHorn.com"
+            />
+          </Link>
+        </Logo>
+        <Menu>
+          <MenuList>
+            <li>
+              <MenuItem to="/">Home</MenuItem>
+            </li>
+            <li>
+              <MenuItem to="/posts">Posts</MenuItem>
+            </li>
 
-          <li>
-            <MenuItem to="/web-toys">Web toys</MenuItem>
-          </li>
-          <li>
-            <MenuItem to="/about">About</MenuItem>
-          </li>
-          <li>
-            <MenuItem to="/contact">Contact</MenuItem>
-          </li>
-        </MenuList>
-      </Menu>
+            <li>
+              <MenuItem to="/web-toys">Web toys</MenuItem>
+            </li>
+            <li>
+              <MenuItem to="/about">About</MenuItem>
+            </li>
+            <li>
+              <MenuItem to="/contact">Contact</MenuItem>
+            </li>
+          </MenuList>
+        </Menu>
+      </HeaderContentContainer>
     </HeaderWrapper>
   );
 };
