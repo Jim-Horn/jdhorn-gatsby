@@ -95,7 +95,7 @@ const Header: React.FC = () => {
           media {
             description
             gatsbyImageData(
-              placeholder: TRACED_SVG
+              placeholder: BLURRED
               layout: FULL_WIDTH
               width: 1600
               cropFocus: BOTTOM
