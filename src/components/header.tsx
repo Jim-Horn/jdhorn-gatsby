@@ -27,4 +27,4 @@ const Header = ({ siteTitle }: { siteTitle: string }) => (
   </StyledHeader>
 );
 
-export default Header;
+export { Header };

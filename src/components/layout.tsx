@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import Header from './imageHeader';
+import { Header } from './ImageHeader';
 import './layout.css';
 
 const StyledMainContainer = styled.div`
@@ -43,4 +43,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default Layout;
+export { Layout };

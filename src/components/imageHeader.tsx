@@ -82,7 +82,7 @@ const HeaderImage = styled(GatsbyImage)`
   z-index: 1;
 `;
 
-const Header: React.FC = () => {
+const ImageHeader: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<HeaderImageNode | null>(
     null,
   );
@@ -156,4 +156,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export { ImageHeader as Header };

@@ -31,4 +31,4 @@ const SiteMap = () => {
   );
 };
 
-export default SiteMap;
+export { SiteMap };
