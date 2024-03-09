@@ -56,4 +56,4 @@ const ListTags = (tags: { tags: string }) => {
   );
 };
 
-export default ListTags;
+export { ListTags };

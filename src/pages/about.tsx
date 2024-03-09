@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExternalLink, Layout, Seo } from '../components';
+import { ExternalLink, Layout, Seo } from '@components';
 
 const SiteMapPage = () => (
   <Layout>

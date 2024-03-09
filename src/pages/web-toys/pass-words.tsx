@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ExternalLink, Layout, Seo } from '../../components';
-import { WordPasswords } from '../../components/pass-words';
+import { ExternalLink, Layout, Seo, WordPasswords } from '../../components';
 
 const PassWordsPage = () => (
   <Layout>

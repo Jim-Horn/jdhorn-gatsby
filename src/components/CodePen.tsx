@@ -26,9 +26,9 @@ const Pen: React.FC<PenProps> = ({
   />
 );
 
-export default Pen;
+export { Pen };
 
-export const query = graphql`
+export const codepenQuery = graphql`
   fragment Pen on ContentfulCodePen {
     contentful_id
     __typename

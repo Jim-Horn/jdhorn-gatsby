@@ -15,10 +15,10 @@ function getRandom(limit: number) {
   return parseInt(String(Math.random() * limit), 10);
 }
 
-function getRandomArray(arr: string[], len: number) {
-  let result = [];
+function getRandomArray(arr: string[], len: number): React.ReactNode[] {
+  let result: React.ReactNode[] = [];
   while (len--) {
-    result.push(arr[getRandom(arr.length)]);
+    result.push(<>{arr[getRandom(arr.length)]}</>);
   }
   return result.reverse();
 }
@@ -55,9 +55,9 @@ const WordPasswords = () => {
   ];
 
   const buildOptions = (finish = 5, start = 1) => {
-    let options = [];
+    let options: { val: string; txt: string }[] = [];
     for (let i = start; i < finish + 1; i++) {
-      options.push({ val: i, txt: i });
+      options.push({ val: i.toString(), txt: i.toString() });
     }
     return options;
   };
@@ -68,7 +68,7 @@ const WordPasswords = () => {
       separators,
       parseInt(wordLength, 10) - 1,
     );
-    let result = [];
+    let result: React.ReactNode[] = [];
     let key = 0;
     while (wordsArray.length) {
       result.push(
@@ -125,11 +125,13 @@ const WordPasswords = () => {
             <select
               onChange={ev => setWordLength(ev.target.value)}
               defaultValue={wordLength}>
-              {buildOptions(5, 2).map(option => (
-                <option key={option.val} value={option.val}>
-                  {option.txt}
-                </option>
-              ))}
+              {buildOptions(5, 2).map(
+                (option: { val: string; txt: string }) => (
+                  <option key={option.val} value={option.val}>
+                    {option.txt}
+                  </option>
+                ),
+              )}
             </select>
           </Label>
         </Column>
@@ -159,7 +161,7 @@ const WordPasswords = () => {
             <select
               onChange={ev => setPasswordLengths(ev.target.value)}
               defaultValue={passwordsLength}>
-              {buildOptions(25).map(option => (
+              {buildOptions(25).map((option: { val: string; txt: string }) => (
                 <option key={option.val} value={option.val}>
                   {option.txt}
                 </option>

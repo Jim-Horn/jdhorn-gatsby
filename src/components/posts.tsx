@@ -104,4 +104,4 @@ const Posts: React.FC<PostsProps> = ({
   );
 };
 
-export default Posts;
+export { Posts };
