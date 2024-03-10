@@ -8,3 +8,4 @@ export * from './Posts';
 export * from './Seo';
 export * from './Sitemap';
 export * from './Tags';
+export * from './PassWords';
