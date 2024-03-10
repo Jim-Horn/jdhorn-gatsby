@@ -3,12 +3,12 @@ import { Header } from './Header';
 import { ImageHeader } from './ImageHeader';
 import { Layout } from './Layout';
 import { ListTags } from './ListTags';
+import { PassWords } from './PassWords';
 import { Pen } from './CodePen';
 import { Posts } from './Posts';
 import { Seo } from './Seo';
 import { Sitemap } from './Sitemap';
 import { Tags } from './Tags';
-import { PassWords } from './PassWords';
 
 export {
   ExternalLink,
@@ -16,10 +16,10 @@ export {
   ImageHeader,
   Layout,
   ListTags,
+  PassWords,
   Pen,
   Posts,
   Seo,
   Sitemap,
   Tags,
-  PassWords,
 };
