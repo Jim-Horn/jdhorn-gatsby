@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import {
+  GatsbyImage,
+  IGatsbyImageData,
+  StaticImage,
+} from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 interface Media {
@@ -35,17 +39,26 @@ const HeaderContentContainer = styled.div`
   margin: 0 auto;
 `;
 
-const Logo = styled.div`
+const LogoWrapper = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
   z-index: 2;
   max-width: 40%;
-  img {
-    max-width: 175px;
-    width: 100%;
-  }
+  /* Adjustments for the StaticImage component can be made here if needed */
 `;
+
+// const Logo = styled.div`
+//   position: absolute;
+//   top: 20px;
+//   left: 20px;
+//   z-index: 2;
+//   max-width: 40%;
+//   img {
+//     max-width: 175px;
+//     width: 100%;
+//   }
+// `;
 
 const Menu = styled.nav`
   position: absolute;
@@ -122,15 +135,17 @@ const Header: React.FC = () => {
         />
       )}
       <HeaderContentContainer>
-        <Logo>
+        <LogoWrapper>
           <Link to="/">
-            <img
-              src="/jdhorn-logo-white.png"
+            <StaticImage
+              src="../images/jdhorn-logo-white.png"
               alt="JDHorn.com logo"
               title="JDHorn.com"
+              placeholder="blurred"
+              width={175}
             />
           </Link>
-        </Logo>
+        </LogoWrapper>
         <Menu>
           <MenuList>
             <li>
