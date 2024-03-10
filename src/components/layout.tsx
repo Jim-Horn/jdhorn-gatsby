@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import Header from './imageHeader';
+import ImageHeader from './imageHeader';
 import './layout.css';
 
 const StyledMainContainer = styled.div`
@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Header />
+      <ImageHeader />
       <StyledMainContainer>
         <main>{children}</main>
         <StyledFooter>
