@@ -23,7 +23,7 @@ const HomePage = () => (
     <Posts />
     <p>
       If you're looking for other info, check out the{' '}
-      <Link to="/sitemap">SiteMap</Link>
+      <Link to="/sitemap">Sitemap</Link>
     </p>
   </Layout>
 );

@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { Layout, Seo, SiteMap } from '../components';
+import { Layout, Seo, Sitemap } from '../components';
 
-const SiteMapPage = () => (
+const SitemapPage = () => (
   <Layout>
     <h1>All site pages</h1>
-    <SiteMap />
+    <Sitemap />
   </Layout>
 );
 
-export const Head = () => <Seo title="Site Map" description={''} children={undefined} />;
+export const Head = () => (
+  <Seo title="Site Map" description={''} children={undefined} />
+);
 
-export default SiteMapPage;
+export default SitemapPage;

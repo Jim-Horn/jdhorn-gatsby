@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import ListTags from './ListTags';
+import { ListTags } from './ListTags';
 import { consolidatePostTags } from '../utils';
 
 const PostListItem = styled.li``;
@@ -104,4 +104,4 @@ const Posts: React.FC<PostsProps> = ({
   );
 };
 
-export default Posts;
+export { Posts };
