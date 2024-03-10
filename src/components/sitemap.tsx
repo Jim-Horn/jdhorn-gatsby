@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
-const SiteMap = () => {
+const Sitemap = () => {
   const data = useStaticQuery(graphql`
     query {
       allSitePage(
@@ -31,4 +31,4 @@ const SiteMap = () => {
   );
 };
 
-export default SiteMap;
+export { Sitemap };

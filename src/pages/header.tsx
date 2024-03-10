@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Layout, Seo, Tags } from '../components';
-import ImageHeader from '../components/ImageHeader';
+import { ImageHeader, Layout, Seo } from '../components';
 
 const HeaderTest = () => (
   <Layout>
