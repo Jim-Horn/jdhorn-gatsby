@@ -129,6 +129,7 @@ const Header: React.FC = () => {
     <HeaderWrapper>
       {selectedImage?.media.gatsbyImageData && (
         <HeaderImage
+          loading="lazy"
           image={selectedImage.media.gatsbyImageData || undefined}
           title={selectedImage.media.description || 'Header Image'}
           alt=""
