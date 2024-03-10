@@ -9,8 +9,7 @@
       "dom",
       "esnext"
     ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
-    "jsx": "react" /* Specify what JSX code is generated. */,
-    "jsxImportSource": "react" /* Specify module specifier used to import the JSX factory functions when using `jsx: react-jsx*`.*/,
+    "jsx": "react-jsx" /* Specify what JSX code is generated. */,
 
     /* Modules */
     "module": "esnext" /* Specify what module code is generated. */,
