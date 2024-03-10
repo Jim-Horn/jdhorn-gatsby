@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import ImageHeader from './imageHeader';
+import ImageHeader from './ImageHeader';
 import './layout.css';
 
 const StyledMainContainer = styled.div`

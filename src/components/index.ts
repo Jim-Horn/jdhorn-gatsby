@@ -1,11 +1,11 @@
 import ExternalLink from './ExternalLink';
-import Header from './header';
-import Layout from './layout';
+import Header from './Header';
+import Layout from './Layout';
 import ListTags from './ListTags';
 import Pen from './CodePen';
-import Posts from './posts';
-import Seo from './seo';
-import SiteMap from './sitemap';
+import Posts from './Posts';
+import Seo from './Seo';
+import SiteMap from './Sitemap';
 import Tags from './Tags';
 
 export {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout, Seo, Tags } from '../components';
-import ImageHeader from '../components/imageHeader';
+import ImageHeader from '../components/ImageHeader';
 
 const HeaderTest = () => (
   <Layout>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import SiteMap from '../components/sitemap';
+import Layout from '../components/Layout';
+import Seo from '../components/Seo';
+import SiteMap from '../components/Sitemap';
 
 const NotFoundPage = () => (
   <Layout>
@@ -13,6 +13,8 @@ const NotFoundPage = () => (
   </Layout>
 );
 
-export const Head = () => <Seo title="404: Not Found" description={''} children={undefined} />;
+export const Head = () => (
+  <Seo title="404: Not Found" description={''} children={undefined} />
+);
 
 export default NotFoundPage;
