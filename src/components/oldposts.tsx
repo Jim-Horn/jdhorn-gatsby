@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import { ListTags } from './';
+import { ListTags } from '.';
 import { consolidatePostTags } from '../utils';
 
 const PostListItem = styled.li``;
