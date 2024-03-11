@@ -4,7 +4,6 @@ import { Seo, Posts, Layout } from '../components';
 
 const HomePage = () => (
   <Layout>
-    <h1>Hi</h1>
     <p>You've arrived at jdhorn.com - a work in progress</p>
     <Posts />
     <p>

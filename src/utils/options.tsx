@@ -64,6 +64,7 @@ export const options: Options = {
           .target as ContentfulAsset;
         return (
           <GatsbyImage
+            loading="lazy"
             image={gatsbyImageData}
             alt={description}
             title={title}
