@@ -12,6 +12,16 @@ const Date = styled.span`
 
 const ContentSection = styled.section`
   margin-bottom: 1rem;
+  .gatsby-image-wrapper {
+    max-width: 100%;
+    float: none;
+    margin-bottom: 1rem;
+    @media (min-width: 480px) {
+      max-width: 40%;
+      float: left;
+      margin: 0 1rem 1rem 0;
+    }
+  }
 `;
 
 const HeadingSection = styled.div`
