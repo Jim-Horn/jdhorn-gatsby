@@ -1,25 +1,11 @@
-import { ExternalLink } from './ExternalLink';
-import { Header } from './header';
-import { Layout } from './layout';
-import { ListTags } from './ListTags';
-import { Pen } from './CodePen';
-import { Posts } from './posts';
-import { Seo } from './seo';
-import { SiteMap } from './sitemap';
-import { Tags } from './Tags';
-import { PassWords } from './PassWords';
-import { ImageHeader } from './imageHeader';
-
-export {
-  ExternalLink,
-  Header,
-  Layout,
-  ListTags,
-  Pen,
-  Posts,
-  Seo,
-  SiteMap,
-  Tags,
-  PassWords,
-  ImageHeader,
-};
+export * from './ExternalLink';
+export * from './header';
+export * from './imageHeader';
+export * from './layout';
+export * from './ListTags';
+export * from './PassWords';
+export * from './CodePen';
+export * from './posts';
+export * from './seo';
+export * from './sitemap';
+export * from './Tags';

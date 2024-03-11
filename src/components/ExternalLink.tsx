@@ -17,7 +17,7 @@ const ExternalLink = ({
 
 export { ExternalLink };
 
-export const query = graphql`
+export const externalLinkQuery = graphql`
   fragment ExternalLink on ContentfulExternalLink {
     __typename
     contentful_id
