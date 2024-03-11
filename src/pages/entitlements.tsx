@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import SiteMap from '../components/sitemap';
+import { Layout, Seo } from '../components';
 
 const Entitlements = () => (
   <Layout>

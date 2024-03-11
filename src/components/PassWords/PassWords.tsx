@@ -23,7 +23,7 @@ function getRandomArray(arr: string[], len: number) {
   return result.reverse();
 }
 
-const WordPasswords = () => {
+const PassWords = () => {
   const [selectedSep, setSelectedSep] = useState('0');
   const [wordLength, setWordLength] = useState('2');
   const [passwordsLength, setPasswordLengths] = useState('6');
@@ -195,4 +195,4 @@ const WordPasswords = () => {
   );
 };
 
-export { WordPasswords };
+export { PassWords };

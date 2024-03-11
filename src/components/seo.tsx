@@ -46,4 +46,4 @@ function Seo({ description, title, children }: SeoProps) {
   );
 }
 
-export default Seo;
+export { Seo };

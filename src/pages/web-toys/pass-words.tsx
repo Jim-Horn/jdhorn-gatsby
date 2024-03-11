@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ExternalLink, Layout, Seo } from '../../components';
-import { WordPasswords } from '../../components/pass-words';
+import { PassWords } from '../../components/';
 
 const PassWordsPage = () => (
   <Layout>
@@ -9,7 +9,7 @@ const PassWordsPage = () => (
       Generate passwords that are secure, yet easy to remember using
       three-letter words.
     </p>
-    <WordPasswords />
+    <PassWords />
   </Layout>
 );
 

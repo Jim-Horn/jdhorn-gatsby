@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Layout, Seo, Tags } from '../components';
-import Header from '../components/imageHeader';
+import { Layout, Seo, Header } from '../components';
 
 const HeaderTest = () => (
   <Layout>
     <h1>Header test</h1>
-    <Header />
+    <Header siteTitle="foo" />
   </Layout>
 );
 
