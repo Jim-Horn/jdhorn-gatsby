@@ -1,5 +1,5 @@
 import React, { ReactNode, FC } from 'react';
-import { ExternalLink, Pen } from '../components';
+import { ExternalLink, CodePen } from '../components';
 import { Options } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -96,7 +96,7 @@ export const options: Options = {
         const { hash, editable, height, defaultTab, showResult } = node.data
           .target as ContentfulCodePen;
         return (
-          <Pen
+          <CodePen
             hash={hash}
             editable={editable}
             height={height}
