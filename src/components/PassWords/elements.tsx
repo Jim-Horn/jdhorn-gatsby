@@ -6,8 +6,8 @@ export const Container = styled.section`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
+  gap: 0.5rem;
   width: 100%;
   margin-right: -15px;
   margin-left: -15px;
