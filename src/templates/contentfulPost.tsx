@@ -76,7 +76,7 @@ export const query = graphql`
         references {
           ... on ContentfulCodePen {
             # The graphql fragment used here is defined in the component itself
-            ...Pen
+            ...CodePen
           }
           ... on ContentfulExternalLink {
             ...ExternalLink

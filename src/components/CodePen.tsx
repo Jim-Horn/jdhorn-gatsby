@@ -9,7 +9,7 @@ type PenProps = {
   editable?: boolean;
 };
 
-const Pen: React.FC<PenProps> = ({
+const CodePen: React.FC<PenProps> = ({
   hash,
   height = 300,
   defaultTab = 'js',
@@ -26,10 +26,10 @@ const Pen: React.FC<PenProps> = ({
   />
 );
 
-export { Pen };
+export { CodePen };
 
 export const codePenQuery = graphql`
-  fragment Pen on ContentfulCodePen {
+  fragment CodePen on ContentfulCodePen {
     contentful_id
     __typename
     hash

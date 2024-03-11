@@ -1,20 +1,6 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { Seo, Posts, Layout } from '../components';
-
-const CenteredContent = styled.main`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  font-family: monospace;
-  div {
-    margin: 1rem;
-    padding: 0.5rem;
-  }
-`;
 
 const HomePage = () => (
   <Layout>

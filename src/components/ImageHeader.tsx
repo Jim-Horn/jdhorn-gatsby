@@ -48,18 +48,6 @@ const LogoWrapper = styled.div`
   /* Adjustments for the StaticImage component can be made here if needed */
 `;
 
-// const Logo = styled.div`
-//   position: absolute;
-//   top: 20px;
-//   left: 20px;
-//   z-index: 2;
-//   max-width: 40%;
-//   img {
-//     max-width: 175px;
-//     width: 100%;
-//   }
-// `;
-
 const Menu = styled.nav`
   position: absolute;
   top: 20px;
