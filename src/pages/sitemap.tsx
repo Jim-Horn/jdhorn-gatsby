@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Layout, Seo, OldSiteMap } from '../components';
+import { Layout, Seo, Sitemap } from '../components';
 
 const SiteMapPage = () => (
   <Layout>
     <h1>All site pages</h1>
-    <OldSiteMap />
+    <Sitemap />
   </Layout>
 );
 
