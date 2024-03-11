@@ -25,35 +25,40 @@ interface QueryResult {
 
 const HeaderWrapper = styled.header`
   position: relative;
-  height: 20rem;
+  height: 10rem;
+  @media (min-width: 768px) {
+    height: 20rem;
+  }
 `;
 
 const HeaderContentContainer = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
   align-items: center;
-  height: 20rem;
+  height: 10rem;
   max-width: 54rem;
   color: #fff;
   margin: 0 auto;
+  padding: 1rem;
+  align-content: start;
+  justify-items: start;
+
+  @media (min-width: 768px) {
+    height: 20rem;
+    grid-template-columns: 1fr 1fr;
+    & > :last-child {
+      justify-self: end;
+    }
+  }
 `;
 
 const LogoWrapper = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
   z-index: 2;
-  max-width: 40%;
-  /* Adjustments for the StaticImage component can be made here if needed */
 `;
 
 const Menu = styled.nav`
-  position: absolute;
-  top: 20px;
-  right: 20px;
   z-index: 2;
-  max-width: 50%;
 `;
 
 const MenuList = styled.ul`
