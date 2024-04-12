@@ -13,7 +13,6 @@ function useSession<T>(key: string, initialValue?: T) {
 
   useEffect(() => {
     try {
-      console.log(`Setting sessionStorage: ${key} =`, value);
       sessionStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error('Error setting session storage item', key, error);
