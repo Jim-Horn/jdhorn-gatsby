@@ -7,7 +7,7 @@
   "dependencies": {
     "@types/react-syntax-highlighter": "^15.5.13",
     "babel-plugin-styled-components": "^2.1.4",
-    "gatsby": "^5.13.6",
+    "gatsby": "^5.13.7",
     "gatsby-plugin-google-analytics": "^5.13.1",
     "gatsby-plugin-google-tagmanager": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
@@ -21,13 +21,13 @@
     "react-codepen-embed": "^1.1.0",
     "react-dom": "^18.3.1",
     "react-syntax-highlighter": "^15.5.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.12"
   },
   "devDependencies": {
     "@types/graphql": "^14.5.0",
     "gatsby-plugin-netlify": "^5.1.1",
     "loader-utils": "^3.3.1",
-    "prettier": "^3.3.2"
+    "prettier": "^3.3.3"
   },
   "keywords": [
     "gatsby"
