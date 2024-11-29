@@ -1,5 +1,6 @@
 export * from './CodePen';
 export * from './ExternalLink';
+export * from './GetQuotes';
 export * from './Header';
 export * from './ImageHeader';
 export * from './Layout';
