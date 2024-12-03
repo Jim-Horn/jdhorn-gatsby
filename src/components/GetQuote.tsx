@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 
 interface Quote {
-  id: string;
   author: string;
   quote: string;
 }
 
+interface QuoteQueryResult {
+  allQuote: {
+    nodes: Quote[];
+  };
+}
+
 export const GetQuote: React.FC = () => {
-  const [fullQuote, setFullQuote] = useState<Quote | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchQuote = async () => {
-      try {
-        const response = await axios.get<Quote>(
-          'https://7qt946zi8d.execute-api.us-east-1.amazonaws.com/dev/quotes',
-        );
-        setFullQuote(response.data);
-      } catch (err) {
-        console.error(err);
-        setError('Failed to fetch quote.');
-      } finally {
-        setLoading(false);
+  const data = useStaticQuery<QuoteQueryResult>(graphql`
+    query {
+      allQuote {
+        nodes {
+          author
+          quote
+        }
       }
-    };
+    }
+  `);
 
-    fetchQuote();
-  }, []);
+  // Get all quotes from the query
+  const quotes = data.allQuote.nodes;
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  // Pick a random quote
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  const randomQuote = quotes[randomIndex];
 
-  const { author, quote } = fullQuote as Quote;
+  // If no quotes are available, return a fallback UI
+  if (!randomQuote) {
+    return <p>No quotes available</p>;
+  }
 
   return (
-    quote && (
-      <p className="quote">
-        <strong>{author}:</strong> {quote}
-      </p>
-    )
+    <div>
+      <div className="quote">“{randomQuote.quote}”</div>
+      <div className="quote-author">- {randomQuote.author}</div>
+    </div>
   );
 };
