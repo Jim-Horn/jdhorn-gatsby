@@ -1,5 +1,6 @@
 import { GatsbyNode } from 'gatsby';
 import path from 'path';
+import axios from 'axios';
 
 const tagPageTemplate = path.resolve(`./src/templates/tag.tsx`);
 const contentfulPageTemplate = path.resolve(
@@ -77,4 +78,35 @@ export const createPages: GatsbyNode['createPages'] = async ({
       },
     });
   });
+};
+
+export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
+  actions,
+  createContentDigest,
+}) => {
+  const { createNode } = actions;
+
+  try {
+    // Fetch quotes from the API
+    const response = await axios.get<
+      { id: string; author: string; quote: string }[]
+    >('https://7qt946zi8d.execute-api.us-east-1.amazonaws.com/dev/quotes');
+
+    const quotes = response.data;
+
+    // Create nodes for each quote
+    quotes.forEach((quote, index) => {
+      createNode({
+        id: quote.id || `quote-${index}`,
+        author: quote.author,
+        quote: quote.quote,
+        internal: {
+          type: 'Quote',
+          contentDigest: createContentDigest(quote),
+        },
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching quotes:', error);
+  }
 };
