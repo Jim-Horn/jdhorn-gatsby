@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Layout, Seo, GetQuotes } from '../components';
+import { Layout, Seo, GetQuote } from '../components';
 
 const QuotesPage = () => (
   <Layout>
-    <h1>Quotes</h1>
-    <GetQuotes />
+    <h1>Quote</h1>
+    <GetQuote />
   </Layout>
 );
 
