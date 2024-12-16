@@ -23,6 +23,13 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const [password, setPassword] = React.useState('');
 
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const passwordField = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (isAdminRoute && passwordField.current) {
+      passwordField.current.focus();
+    }
+  }, [isAdminRoute]);
 
   return (
     <>
@@ -32,13 +39,21 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
           {isAdminRoute && !isAuthenticated ? (
             <div>
               <h1>Admin Login</h1>
-              <input
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
-              <button onClick={() => login(password)}>Login</button>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  login(password);
+                  setPassword('');
+                }}>
+                <input
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  ref={passwordField}
+                />
+                <button type="submit">Login</button>
+              </form>
             </div>
           ) : (
             <>
