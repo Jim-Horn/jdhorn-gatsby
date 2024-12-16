@@ -5,7 +5,7 @@ const Sitemap = () => {
   const data = useStaticQuery(graphql`
     query {
       allSitePage(
-        filter: { path: { regex: "/^((?!404).)*$/" } }
+        filter: { path: { regex: "/^((?!404|^/admin/).)*$/" } }
         sort: { path: ASC }
       ) {
         edges {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import { useLocation } from '@reach/router';
-import { AuthProvider, useAuth } from '../AuthContext';
+import { useAuth } from '../AuthContext';
 import { ImageHeader } from '..';
 import './layout.css';
 
@@ -17,28 +17,42 @@ const StyledFooter = styled.footer`
   font-size: var(--font-sm);
 `;
 
-const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const { isAuthenticated, login, logout } = useAuth();
-  const [password, setPassword] = React.useState('');
-
   const isAdminRoute = location.pathname.startsWith('/admin');
+
+  // Use browser-only logic for auth
+  const [isBrowser, setIsBrowser] = React.useState(false);
+  React.useEffect(() => {
+    setIsBrowser(true);
+  }, []);
+
+  const {
+    isAuthenticated,
+    login = () => {},
+    logout = () => {},
+  } = isBrowser ? useAuth() : { isAuthenticated: false };
+
+  // Admin-specific logic
+  const [password, setPassword] = React.useState('');
   const passwordField = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
-    if (isAdminRoute && passwordField.current) {
+    if (isAdminRoute && isBrowser && passwordField.current) {
       passwordField.current.focus();
     }
-  }, [isAdminRoute]);
+  }, [isAdminRoute, isBrowser]);
 
   return (
     <>
       <ImageHeader />
       <StyledMainContainer>
         <main>
-          {isAdminRoute && !isAuthenticated ? (
+          {/* Only render admin login if in the browser */}
+          {isAdminRoute && isBrowser && !isAuthenticated ? (
             <div>
               <h1>Admin Login</h1>
+
               <form
                 onSubmit={e => {
                   e.preventDefault();
@@ -57,7 +71,8 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
             </div>
           ) : (
             <>
-              {isAdminRoute && (
+              {/* Render children and admin logout button */}
+              {isAdminRoute && isBrowser && (
                 <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
                   <button onClick={logout}>Logout</button>
                 </div>
@@ -66,6 +81,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
             </>
           )}
         </main>
+        {/* Footer always renders */}
         <StyledFooter>
           &copy; {new Date().getFullYear()} &middot; <Link to="/">Home</Link>
           &nbsp; &middot; <Link to="/contact">Contact</Link>&nbsp; &middot;{' '}
@@ -77,12 +93,5 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
-
-// Wrap the Layout with AuthProvider
-const Layout = ({ children }: { children: React.ReactNode }) => (
-  <AuthProvider>
-    <LayoutComponent>{children}</LayoutComponent>
-  </AuthProvider>
-);
 
 export { Layout };
