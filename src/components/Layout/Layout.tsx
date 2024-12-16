@@ -38,10 +38,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const passwordField = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
-    if (isAdminRoute && passwordField.current) {
+    if (isAdminRoute && isBrowser && passwordField.current) {
       passwordField.current.focus();
     }
-  }, [isAdminRoute]);
+  }, [isAdminRoute, isBrowser]);
 
   return (
     <>
