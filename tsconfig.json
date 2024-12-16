@@ -38,7 +38,8 @@
     "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied `any` type. */,
     "strictFunctionTypes": true /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */,
     "alwaysStrict": true /* Ensure 'use strict' is always emitted. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "types": ["./global.d.ts"]
   },
   "include": [
     "./src/**/*",
