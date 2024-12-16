@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
+import { useLocation } from '@reach/router';
+import { AuthProvider, useAuth } from '../AuthContext';
 import { ImageHeader } from '..';
 import './layout.css';
 
@@ -15,22 +17,40 @@ const StyledFooter = styled.footer`
   font-size: var(--font-sm);
 `;
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+  const { isAuthenticated, login, logout } = useAuth();
+  const [password, setPassword] = React.useState('');
+
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <>
       <ImageHeader />
       <StyledMainContainer>
-        <main>{children}</main>
+        <main>
+          {isAdminRoute && !isAuthenticated ? (
+            <div>
+              <h1>Admin Login</h1>
+              <input
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+              <button onClick={() => login(password)}>Login</button>
+            </div>
+          ) : (
+            <>
+              {isAdminRoute && (
+                <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+                  <button onClick={logout}>Logout</button>
+                </div>
+              )}
+              {children}
+            </>
+          )}
+        </main>
         <StyledFooter>
           &copy; {new Date().getFullYear()} &middot; <Link to="/">Home</Link>
           &nbsp; &middot; <Link to="/contact">Contact</Link>&nbsp; &middot;{' '}
@@ -42,5 +62,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
+
+// Wrap the Layout with AuthProvider
+const Layout = ({ children }: { children: React.ReactNode }) => (
+  <AuthProvider>
+    <LayoutComponent>{children}</LayoutComponent>
+  </AuthProvider>
+);
 
 export { Layout };
