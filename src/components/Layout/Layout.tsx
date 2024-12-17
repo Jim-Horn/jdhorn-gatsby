@@ -21,19 +21,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
 
-  // Use browser-only logic for auth
+  // Always call the hook
+  const { isAuthenticated, login, logout } = useAuth();
+
+  // Browser-only logic
   const [isBrowser, setIsBrowser] = React.useState(false);
   React.useEffect(() => {
     setIsBrowser(true);
   }, []);
 
-  const {
-    isAuthenticated,
-    login = () => {},
-    logout = () => {},
-  } = isBrowser ? useAuth() : { isAuthenticated: false };
-
-  // Admin-specific logic
+  // Admin-specific login logic
   const [password, setPassword] = React.useState('');
   const passwordField = React.useRef<HTMLInputElement>(null);
 
@@ -43,16 +40,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [isAdminRoute, isBrowser]);
 
+  const shouldShowLogin = isAdminRoute && isBrowser && !isAuthenticated;
+
   return (
     <>
       <ImageHeader />
       <StyledMainContainer>
         <main>
-          {/* Only render admin login if in the browser */}
-          {isAdminRoute && isBrowser && !isAuthenticated ? (
+          {shouldShowLogin ? (
             <div>
               <h1>Admin Login</h1>
-
               <form
                 onSubmit={e => {
                   e.preventDefault();
@@ -71,7 +68,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
           ) : (
             <>
-              {/* Render children and admin logout button */}
               {isAdminRoute && isBrowser && (
                 <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
                   <button onClick={logout}>Logout</button>
@@ -81,7 +77,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </>
           )}
         </main>
-        {/* Footer always renders */}
         <StyledFooter>
           &copy; {new Date().getFullYear()} &middot; <Link to="/">Home</Link>
           &nbsp; &middot; <Link to="/contact">Contact</Link>&nbsp; &middot;{' '}
