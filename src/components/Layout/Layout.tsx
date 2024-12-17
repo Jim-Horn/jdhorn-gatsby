@@ -21,16 +21,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
 
-  // Always call the hook
-  const { isAuthenticated, login, logout } = useAuth();
+  const isBrowser = typeof window !== 'undefined';
 
-  // Browser-only logic
-  const [isBrowser, setIsBrowser] = React.useState(false);
-  React.useEffect(() => {
-    setIsBrowser(true);
-  }, []);
+  // Use auth only in the browser
+  const auth = isBrowser
+    ? useAuth()
+    : { isAuthenticated: false, login: () => {}, logout: () => {} };
+  const { isAuthenticated, login, logout } = auth;
 
-  // Admin-specific login logic
   const [password, setPassword] = React.useState('');
   const passwordField = React.useRef<HTMLInputElement>(null);
 
