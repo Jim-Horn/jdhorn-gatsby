@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-import { useAuth } from '../components/AuthContext';
 
 const Sitemap = () => {
-  const { isAuthenticated } = useAuth();
+  const isBrowser = typeof window !== 'undefined';
+
+  // Safe fallback for SSR
+  const isAuthenticated = isBrowser
+    ? require('../components/AuthContext').useAuth().isAuthenticated
+    : false;
 
   const data = useStaticQuery(graphql`
     query {
@@ -27,6 +31,7 @@ const Sitemap = () => {
       return true;
     },
   );
+
   return (
     <ul>
       {filteredPages.map((node: { node: { path: string } }) => {
