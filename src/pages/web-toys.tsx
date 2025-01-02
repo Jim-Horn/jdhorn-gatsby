@@ -12,6 +12,10 @@ const WebToysPage = () => (
         <Link to="/web-toys/pass-words">Pass🔒Words</Link>: Generate passwords
         that are secure, yet easy to remember using three-letter words.
       </li>
+      <li>
+        <Link to="/web-toys/kaprekars-calculator">Kaprekar Calculator</Link>:
+        Discover the fascinating number 6174 and its unique properties.
+      </li>
     </ul>
   </Layout>
 );
