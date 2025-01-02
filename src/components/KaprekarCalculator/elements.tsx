@@ -1,34 +1,32 @@
 import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
-  max-width: 600px;
-  margin: 20px auto;
+  margin: 1.25rem auto;
   font-family: Arial, sans-serif;
 `;
 
 export const StyledInputGroup = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 `;
 
 export const StyledLabel = styled.label`
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.25rem;
 `;
 
 export const StyledInput = styled.input`
-  padding: 8px;
-  width: calc(100% - 90px);
-  margin-right: 10px;
+  padding: 0.5rem;
+  margin-right: 0.75rem;
   font-size: 1rem;
 `;
 
 export const StyledButton = styled.button`
-  padding: 8px 15px;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: pointer;
 
   &:hover {
