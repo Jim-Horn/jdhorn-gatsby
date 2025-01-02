@@ -3,6 +3,7 @@ export * from './ExternalLink';
 export * from './GetQuote';
 export * from './Header';
 export * from './ImageHeader';
+export * from './KaprekarCalculator';
 export * from './Layout';
 export * from './ListTags';
 export * from './PassWords';
