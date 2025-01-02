@@ -34,6 +34,9 @@ const KaprekarCalculator: React.FC = () => {
 
   const handleClick = (ev: { preventDefault: () => void }) => {
     ev.preventDefault();
+    handleBlur({
+      target: { value: number },
+    } as React.FocusEvent<HTMLInputElement>);
     if (!isValidNumber(number)) {
       setOutput(
         'Please enter a valid number between 1 and 9998 with at least two different digits.',
@@ -84,6 +87,7 @@ const KaprekarCalculator: React.FC = () => {
             value={number}
             onChange={e => setNumber(e.target.value)}
             onBlur={handleBlur}
+            onFocus={ev => ev.target.select()}
             placeholder="e.g., 9831"
           />
           <StyledButton onClick={handleClick}>Calculate</StyledButton>
