@@ -32,7 +32,8 @@ const KaprekarCalculator: React.FC = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (ev: { preventDefault: () => void }) => {
+    ev.preventDefault();
     if (!isValidNumber(number)) {
       setOutput(
         'Please enter a valid number between 1 and 9998 with at least two different digits.',
@@ -71,19 +72,23 @@ const KaprekarCalculator: React.FC = () => {
 
   return (
     <StyledContainer>
-      <StyledInputGroup>
-        <StyledLabel htmlFor="numberInput">Enter a 4-digit number:</StyledLabel>
-        <StyledInput
-          id="numberInput"
-          ref={inputRef}
-          type="text"
-          value={number}
-          onChange={e => setNumber(e.target.value)}
-          onBlur={handleBlur}
-          placeholder="e.g., 9831"
-        />
-        <StyledButton onClick={handleClick}>Calculate</StyledButton>
-      </StyledInputGroup>
+      <form onSubmit={handleClick}>
+        <StyledInputGroup>
+          <StyledLabel htmlFor="numberInput">
+            Enter a 4-digit number:
+          </StyledLabel>
+          <StyledInput
+            id="numberInput"
+            ref={inputRef}
+            type="text"
+            value={number}
+            onChange={e => setNumber(e.target.value)}
+            onBlur={handleBlur}
+            placeholder="e.g., 9831"
+          />
+          <StyledButton onClick={handleClick}>Calculate</StyledButton>
+        </StyledInputGroup>
+      </form>
       <StyledTextarea value={output} readOnly />
     </StyledContainer>
   );
