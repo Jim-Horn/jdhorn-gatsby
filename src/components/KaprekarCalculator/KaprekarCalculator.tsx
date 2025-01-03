@@ -83,7 +83,9 @@ const KaprekarCalculator: React.FC = () => {
           <StyledInput
             id="numberInput"
             ref={inputRef}
-            type="text"
+            type="tel"
+            inputMode="numeric"
+            maxLength={4}
             value={number}
             onChange={e => setNumber(e.target.value)}
             onBlur={handleBlur}
