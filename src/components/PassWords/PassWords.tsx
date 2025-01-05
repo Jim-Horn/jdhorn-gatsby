@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import data from './data';
 import {
-  Password,
-  Container,
-  Row,
-  Column,
-  Label,
-  Possibilities,
-  Results,
-  Overlay,
+  StyledPassword,
+  StyledContainer,
+  StyledRow,
+  StyledColumn,
+  StyledLabel,
+  StyledPossibilities,
+  StyledResults,
+  StyledOverlay,
 } from './elements';
 
 function getRandom(limit: number) {
@@ -87,13 +87,13 @@ const PassWords = () => {
 
   const passwordArray = useMemo(() => {
     return Array.from({ length: Number(passwordsLength) }, (_, i) => (
-      <Password
+      <StyledPassword
         key={i}
         onClick={ev => {
           copyToClipboard(ev.currentTarget.innerText);
         }}>
         {buildPassword()}
-      </Password>
+      </StyledPassword>
     ));
   }, [passwordsLength, separators, wordLength, refreshTrigger]);
 
@@ -116,10 +116,10 @@ const PassWords = () => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Column span={3} mobileSpan={6} smallerSpan={12}>
-          <Label>
+    <StyledContainer>
+      <StyledRow>
+        <StyledColumn span={3} mobileSpan={6} smallerSpan={12}>
+          <StyledLabel>
             Words per password
             <br />
             <select
@@ -131,11 +131,11 @@ const PassWords = () => {
                 </option>
               ))}
             </select>
-          </Label>
-        </Column>
+          </StyledLabel>
+        </StyledColumn>
 
-        <Column span={3} mobileSpan={6} smallerSpan={12}>
-          <Label>
+        <StyledColumn span={3} mobileSpan={6} smallerSpan={12}>
+          <StyledLabel>
             Separators
             <br />
             <select
@@ -149,11 +149,11 @@ const PassWords = () => {
                 </option>
               ))}
             </select>
-          </Label>
-        </Column>
+          </StyledLabel>
+        </StyledColumn>
 
-        <Column span={3} mobileSpan={6} smallerSpan={12}>
-          <Label>
+        <StyledColumn span={3} mobileSpan={6} smallerSpan={12}>
+          <StyledLabel>
             Number of passwords
             <br />
             <select
@@ -165,33 +165,33 @@ const PassWords = () => {
                 </option>
               ))}
             </select>
-          </Label>
-        </Column>
+          </StyledLabel>
+        </StyledColumn>
 
-        <Column span={3} mobileSpan={6} smallerSpan={12}>
+        <StyledColumn span={3} mobileSpan={6} smallerSpan={12}>
           <button
             className="btn-sm btn-outline-success"
             onClick={refreshPasswords}>
             Refresh
           </button>
-        </Column>
-      </Row>
-      <Row>
-        <Column>
-          <Possibilities>
+        </StyledColumn>
+      </StyledRow>
+      <StyledRow>
+        <StyledColumn>
+          <StyledPossibilities>
             With the selected options, there are {doCalculations()} possible
             combinations.
             <br />
             Click a password to copy it to the clipboard.
-          </Possibilities>
-        </Column>
-        <Column>
-          <Results>{passwordArray}</Results>
-        </Column>
-      </Row>
+          </StyledPossibilities>
+        </StyledColumn>
+        <StyledColumn>
+          <StyledResults>{passwordArray}</StyledResults>
+        </StyledColumn>
+      </StyledRow>
 
-      {isCopied && <Overlay>Copied!</Overlay>}
-    </Container>
+      {isCopied && <StyledOverlay>Copied!</StyledOverlay>}
+    </StyledContainer>
   );
 };
 

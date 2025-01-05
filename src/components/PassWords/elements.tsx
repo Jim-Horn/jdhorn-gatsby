@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
+export const StyledContainer = styled.section`
   /* overflow-x: scroll; */
 `;
 
-export const Row = styled.div`
+export const StyledRow = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
   gap: 0.5rem;
@@ -22,7 +22,7 @@ interface ColumnProps {
   smallerSpan?: number;
 }
 
-export const Column = styled.div<ColumnProps>`
+export const StyledColumn = styled.div<ColumnProps>`
   grid-column: span ${props => props.span || 12};
   @media (max-width: 768px) {
     grid-column: span ${props => props.mobileSpan || props.span || 12};
@@ -34,22 +34,22 @@ export const Column = styled.div<ColumnProps>`
   }
 `;
 
-export const Fields = styled.div`
+export const StyledFields = styled.div`
   margin-bottom: 1rem;
   align-items: center;
   display: flex;
 `;
 
-export const Label = styled.label`
+export const StyledLabel = styled.label`
   font-weight: bold;
 `;
 
-export const Possibilities = styled.p`
+export const StyledPossibilities = styled.p`
   font-style: italic;
   font-size: smaller;
 `;
 
-export const Results = styled.section`
+export const StyledResults = styled.section`
   position: relative;
   outline: 1px dashed green;
   padding: 1rem;
@@ -61,7 +61,7 @@ export const Results = styled.section`
   flex-wrap: wrap;
 `;
 
-export const Password = styled.div`
+export const StyledPassword = styled.div`
   cursor: pointer;
 
   &:hover {
@@ -77,13 +77,13 @@ export const Password = styled.div`
   }
 `;
 
-export const Copy = styled.div`
+export const StyledCopy = styled.div`
   text-align: center;
   font-size: small;
   margin-bottom: 1rem;
 `;
 
-export const Overlay = styled.div`
+export const StyledOverlay = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
