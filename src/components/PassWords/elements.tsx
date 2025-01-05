@@ -84,7 +84,7 @@ export const Copy = styled.div`
 `;
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.75);
@@ -96,4 +96,5 @@ export const Overlay = styled.div`
   line-height: 1;
   left: 0;
   top: 0;
+  z-index: 100;
 `;
