@@ -101,7 +101,7 @@ export const options: Options = {
             hash={hash}
             editable={editable}
             height={height}
-            defaultTab={getTabs(defaultTab, showResult)}
+            defaultTab={getTabs({ defaultTab, showResult })}
           />
         );
       }
