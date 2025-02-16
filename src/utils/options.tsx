@@ -5,7 +5,7 @@ import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import { getTabs } from './getTabs';
+import { getTabs, Tabs } from './getTabs';
 import { Link } from 'gatsby';
 
 interface ChildProps {
@@ -38,7 +38,7 @@ interface ContentfulCodePen {
   hash: string;
   editable: boolean;
   height: number;
-  defaultTab: any;
+  defaultTab: keyof typeof Tabs;
   showResult: boolean;
 }
 

@@ -1,9 +1,10 @@
-enum Tabs {
+export enum Tabs {
   HTML = 'html',
   CSS = 'css',
   JS = 'js',
   None = '',
 }
+
 interface TabsProps {
   defaultTab: keyof typeof Tabs;
   showResult: boolean;
