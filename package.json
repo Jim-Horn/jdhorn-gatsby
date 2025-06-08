@@ -7,7 +7,7 @@
   "dependencies": {
     "@types/react-syntax-highlighter": "^15.5.13",
     "babel-plugin-styled-components": "^2.1.4",
-    "gatsby": "^5.14.1",
+    "gatsby": "^5.14.4",
     "gatsby-plugin-google-analytics": "^5.14.0",
     "gatsby-plugin-google-tagmanager": "^5.14.0",
     "gatsby-plugin-image": "^3.14.0",
@@ -21,7 +21,7 @@
     "react-codepen-embed": "^1.1.0",
     "react-dom": "^18.3.1",
     "react-syntax-highlighter": "^15.5.0",
-    "styled-components": "^6.1.16"
+    "styled-components": "^6.1.18"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
@@ -36,7 +36,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "loader-utils": "^3.3.1",
     "prettier": "^3.5.3",
-    "ts-jest": "^29.3.1"
+    "ts-jest": "^29.3.4"
   },
   "keywords": [
     "gatsby"
