@@ -1,0 +1,23 @@
+[build]
+  # Specify Node.js version for builds
+  environment = { NODE_VERSION = "22" }
+
+  # Default build command for Gatsby
+  command = "yarn build"
+  
+  # Default publish directory for Gatsby
+  publish = "public"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
