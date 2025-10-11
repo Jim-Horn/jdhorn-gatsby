@@ -7,6 +7,31 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { getTabs, Tabs } from './getTabs';
 import { Link } from 'gatsby';
+import styled from 'styled-components';
+
+const Blockquote = styled.blockquote`
+  border-left: 4px solid #ddd;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  font-style: italic;
+  background-color: #f9f9f9;
+
+  p {
+    margin: 0;
+  }
+
+  cite {
+    display: block;
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    font-style: normal;
+    color: #666;
+
+    &::before {
+      content: '— ';
+    }
+  }
+`;
 
 interface ChildProps {
   children: ReactNode;
@@ -58,6 +83,7 @@ export const options: Options = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.QUOTE]: (node, children) => <Blockquote>{children}</Blockquote>,
     [BLOCKS.EMBEDDED_ASSET]: node => {
       if (node.data.target.__typename === 'ContentfulAsset') {
         const { gatsbyImageData, description, title } = node.data
