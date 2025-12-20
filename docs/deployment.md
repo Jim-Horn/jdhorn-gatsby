@@ -91,8 +91,6 @@ Set in Netlify dashboard:
    - Contentful API access token
    - Used for fetching content
 
-**Note:** `GATSBY_ADMIN_PASSWORD` was previously required but has been removed along with the admin system.
-
 ### Configuration
 
 - **Location**: Netlify Site Settings → Environment Variables

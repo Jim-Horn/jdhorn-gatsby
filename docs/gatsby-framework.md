@@ -97,10 +97,6 @@ Fetches quotes from external API and creates Gatsby nodes:
 
 Removes React DevTools in production builds for security.
 
-### wrapRootElement
-
-Wraps the app with `AuthProvider` for authentication context.
-
 ## SSR APIs
 
 ### onRenderBody
@@ -111,8 +107,6 @@ Sets HTML language attribute to `en`.
 
 Required environment variables:
 - `CONTENTFUL_ACCESS_TOKEN` - Contentful API access token
-
-**Note:** `GATSBY_ADMIN_PASSWORD` was previously used for admin authentication but has been removed along with the admin system.
 
 ## Scripts
 

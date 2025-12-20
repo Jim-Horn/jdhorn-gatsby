@@ -4,42 +4,9 @@ This document outlines potential improvements to the jdhorn.com codebase, organi
 
 _Last updated: December 20, 2025_
 
-## 🔴 Critical Security Issues
-
-### 1. Authentication System Security
-
-**Current Issue:**
-
-- Password stored in `GATSBY_ADMIN_PASSWORD` environment variable is exposed to the browser
-- Client-side only authentication can be bypassed
-- No server-side validation
-
-**Recommendations:**
-
-- Implement serverless function (Netlify Functions) for authentication
-- Use JWT tokens or session cookies
-- Hash passwords server-side
-- Add rate limiting to prevent brute force attacks
-- Consider using a service like Auth0 or Netlify Identity
-
-**Impact:** High - Current system is not secure for production use
-
-### 2. Environment Variable Exposure
-
-**Current Issue:**
-
-- `GATSBY_` prefixed variables are bundled into client-side code
-- Admin password is visible in browser source
-
-**Recommendations:**
-
-- Never use `GATSBY_` prefix for sensitive data
-- Use serverless functions for any operations requiring secrets
-- Implement proper API authentication
-
 ## 🟡 Type Safety Improvements
 
-### 3. Replace `any` Types
+### 1. Replace `any` Types
 
 **Current Issues:**
 
@@ -77,7 +44,7 @@ type GraphQLError = {
 
 ## 🟢 Code Quality & Best Practices
 
-### 4. Error Handling Improvements
+### 2. Error Handling Improvements
 
 **Current Issues:**
 
@@ -109,35 +76,7 @@ if (contentfulPosts.errors) {
 }
 ```
 
-### 5. Admin System (Optional - Currently Skeleton)
-
-**Current Status:**
-
-- Admin system is a skeleton/incomplete feature - a side project that never took flight
-- Pages exist but contain only placeholder content (Lorem ipsum)
-- No functionality implemented beyond basic routing
-- No CRUD operations, forms, or API integration
-
-**Recommendations:**
-
-**Option A: Remove the skeleton** (if not planning to use)
-
-- Remove admin pages and routes
-- Remove admin-related utilities
-- Simplify authentication system if it was only for admin
-
-**Option B: Complete the implementation** (if you want admin features)
-
-- Complete quote management interface
-- Add form validation
-- Implement API integration for quote CRUD
-- Add confirmation dialogs for destructive actions
-- Add loading states and success/error notifications
-- Implement authentication properly (see Security section)
-
-**Recommendation:** Given it's incomplete and unused, consider removing it unless you have concrete plans to implement admin functionality. This would reduce code complexity and maintenance burden.
-
-### 6. Accessibility (a11y) Improvements
+### 3. Accessibility (a11y) Improvements
 
 **Current Issues:**
 
@@ -167,7 +106,7 @@ if (contentfulPosts.errors) {
 </StyledButton>
 ```
 
-### 7. Performance Optimizations
+### 4. Performance Optimizations
 
 **Current Opportunities:**
 
@@ -184,7 +123,7 @@ if (contentfulPosts.errors) {
 - Optimize font loading (font-display: swap)
 - Add resource hints (preload, prefetch)
 
-### 8. Testing Coverage
+### 5. Testing Coverage
 
 **Current Status:**
 
@@ -203,7 +142,7 @@ if (contentfulPosts.errors) {
 
 ## 🔵 Feature Enhancements
 
-### 9. SEO Improvements
+### 6. SEO Improvements
 
 **Current Opportunities:**
 
@@ -236,7 +175,7 @@ const structuredData = {
 };
 ```
 
-### 10. Content Preview System
+### 7. Content Preview System
 
 **Current Issue:**
 
@@ -248,9 +187,8 @@ const structuredData = {
 - Implement Contentful preview API
 - Add preview mode with Netlify Functions
 - Create preview pages that fetch live content
-- Add preview authentication
 
-### 11. Enhanced Quote System
+### 8. Enhanced Quote System
 
 **Current Limitations:**
 
@@ -267,7 +205,7 @@ const structuredData = {
 - Show quote history
 - Add quote of the day feature
 
-### 12. Tag System Enhancements
+### 9. Tag System Enhancements
 
 **Current Opportunities:**
 
@@ -283,7 +221,7 @@ const structuredData = {
 - Add popular tags section
 - Consider tag categories/hierarchy
 
-### 13. Analytics & Monitoring
+### 10. Analytics & Monitoring
 
 **Current Status:**
 
@@ -302,7 +240,7 @@ const structuredData = {
 
 ## 🟣 Developer Experience
 
-### 14. Code Organization
+### 11. Code Organization
 
 **Recommendations:**
 
@@ -312,7 +250,7 @@ const structuredData = {
 - Create component storybook (optional)
 - Add pre-commit hooks (Husky + lint-staged)
 
-### 15. Build Performance
+### 12. Build Performance
 
 **Current Opportunities:**
 
@@ -327,7 +265,7 @@ const structuredData = {
 - Parallelize independent operations
 - Monitor build times and optimize slow steps
 
-### 16. Development Tools
+### 13. Development Tools
 
 **Recommendations:**
 
@@ -339,7 +277,7 @@ const structuredData = {
 
 ## 🟠 Infrastructure & DevOps
 
-### 17. Environment Management
+### 14. Environment Management
 
 **Recommendations:**
 
@@ -348,7 +286,7 @@ const structuredData = {
 - Add feature flags system
 - Implement blue-green deployments
 
-### 18. Monitoring & Alerts
+### 15. Monitoring & Alerts
 
 **Recommendations:**
 
@@ -358,7 +296,7 @@ const structuredData = {
 - Alert on error rate spikes
 - Monitor API response times
 
-### 19. Documentation
+### 16. Documentation
 
 **Current Status:**
 
@@ -377,31 +315,28 @@ const structuredData = {
 
 ### High Priority (Do First)
 
-1. 🔴 Authentication security fixes
-2. 🔴 Environment variable security
-3. 🟡 Replace `any` types
-4. 🟢 Error handling improvements
-5. 🟢 Accessibility improvements
+1. 🟡 Replace `any` types
+2. 🟢 Error handling improvements
+3. 🟢 Accessibility improvements
+4. 🟢 Testing coverage expansion
 
 ### Medium Priority (Do Soon)
 
-6. 🟢 Admin system decision (remove skeleton or complete implementation)
-7. 🟢 Testing coverage expansion
-8. 🔵 SEO improvements
-9. 🔵 Content preview system
-10. 🟣 Code organization improvements
+5. 🔵 SEO improvements
+6. 🔵 Content preview system
+7. 🟣 Code organization improvements
+8. 🟢 Performance optimizations
 
 ### Low Priority (Nice to Have)
 
-11. 🔵 Enhanced quote features
-12. 🔵 Tag system enhancements
-13. 🟣 Development tools
-14. 🟠 Infrastructure improvements
-15. 📊 Analytics enhancements
+9. 🔵 Enhanced quote features
+10. 🔵 Tag system enhancements
+11. 🟣 Development tools
+12. 🟠 Infrastructure improvements
+13. 📊 Analytics enhancements
 
 ## Implementation Notes
 
-- Start with security fixes (critical)
 - Address type safety incrementally
 - Add tests as you modify code
 - Document decisions as you go

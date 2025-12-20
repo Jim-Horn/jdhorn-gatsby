@@ -209,8 +209,6 @@ src/components/
 └── index.ts
 ```
 
-**Note:** `AuthContext.tsx` was removed on December 20, 2025 along with the admin system.
-
 ## Styling
 
 ### Styled Components
@@ -234,7 +232,6 @@ Some components use CSS files:
 
 Components have corresponding test files:
 
-- `AuthContext.test.tsx`
 - `ExternalLink.test.tsx`
 - `Header.test.tsx`
 - `ListTags.test.tsx`

@@ -49,40 +49,29 @@ jdhorn.com is a personal website built with Gatsby, React, and TypeScript. It fe
    - Quote display and management
    - Random quote selection
 
-### Legacy/Removed Systems
-
-8. [Authentication System](./authentication.md) - **REMOVED**
-   - Was a password-based authentication system
-   - Built for admin system (also removed)
-   - Removed on December 20, 2025
-
-9. [Admin System](./admin-system.md) - **REMOVED**
-   - Was a skeleton/placeholder - incomplete side project
-   - Removed on December 20, 2025
-
 ### Technical Systems
 
-10. [Component Library](./component-library.md)
+8. [Component Library](./component-library.md)
     - Reusable React components
     - Layout components
     - UI components
 
-11. [Styling System](./styling-system.md)
+9. [Styling System](./styling-system.md)
     - Styled-components integration
     - CSS architecture
     - Responsive design
 
-12. [SEO & Analytics](./seo-analytics.md)
+10. [SEO & Analytics](./seo-analytics.md)
     - Google Analytics integration
     - Google Tag Manager
     - SEO component and metadata
 
-13. [Testing Infrastructure](./testing.md)
+11. [Testing Infrastructure](./testing.md)
     - Jest configuration
     - Test utilities and setup
     - Component testing
 
-14. [Deployment System](./deployment.md)
+12. [Deployment System](./deployment.md)
     - Netlify deployment configuration
     - Build optimization
     - Environment variables

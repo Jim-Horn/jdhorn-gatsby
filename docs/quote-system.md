@@ -137,21 +137,6 @@ const QuotesPage = () => (
 );
 ```
 
-## Admin Management
-
-### Quote Management Page
-
-`src/pages/admin/manage-quotes.tsx` - Admin interface for managing quotes (currently placeholder).
-
-### Future Implementation
-
-The admin system is set up to manage quotes:
-
-- Add new quotes
-- Edit existing quotes
-- Delete quotes
-- API integration for CRUD operations
-
 ## Build-Time Fetching
 
 Quotes are fetched **at build time**, not runtime:
@@ -188,7 +173,6 @@ Potential improvements:
 - Search functionality
 - Favorite quotes
 - Share functionality
-- Admin CRUD interface
 - Real-time updates (webhooks)
 
 ---
