@@ -88,6 +88,10 @@ jdhorn.com is a personal website built with Gatsby, React, and TypeScript. It fe
     - Build optimization
     - Environment variables
 
+## Additional Documentation
+
+- [Improvement Suggestions](./improvement-suggestions.md) - Recommendations for code quality, security, and feature enhancements
+
 ## Quick Links
 
 - [Project Repository](https://github.com/Jim-Horn/jdhorn-gatsby)
