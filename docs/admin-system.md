@@ -1,8 +1,14 @@
-# Admin System
+# Admin System - REMOVED
+
+## Status
+
+**This system has been removed from the codebase as of December 20, 2025.**
 
 ## Overview
 
-The admin system provides a dashboard and management interfaces for site administrators. Currently includes quote management with potential for expansion.
+The admin system was a **skeleton implementation** - a side project that was started but never completed. It provided basic page structure and routing but had no functional features implemented. The pages existed as placeholders with no actual functionality.
+
+Since it was incomplete and unused, it was removed to reduce code complexity and maintenance burden.
 
 ## Structure
 
@@ -63,7 +69,7 @@ const AdminHomePage: React.FC = () => {
 
 ### Current Status
 
-Currently a placeholder page:
+**This is a skeleton/placeholder with no functionality.** The page contains only Lorem ipsum text:
 
 ```typescript
 const AdminManageQuotes: React.FC = () => {
@@ -76,14 +82,18 @@ const AdminManageQuotes: React.FC = () => {
 };
 ```
 
-### Planned Features
+### Note
 
-Future implementation should include:
+This feature was started as a side project but never completed. There is no functionality implemented beyond basic page structure. If you want to implement admin features in the future, you would need to:
+
 - List all quotes
 - Add new quotes
 - Edit existing quotes
 - Delete quotes
 - API integration for CRUD operations
+- Form validation
+- Error handling
+- Loading states
 
 ## Authentication Integration
 
@@ -139,7 +149,9 @@ All admin pages use the `Layout` component:
 
 ## Future Enhancements
 
-### Potential Admin Features
+**Note:** These are hypothetical features if the admin system were to be completed. Currently, none of this functionality exists.
+
+### Potential Admin Features (If Implemented)
 
 1. **Content Management**
    - Post editor
@@ -165,12 +177,12 @@ All admin pages use the `Layout` component:
 
 ### Quote API
 
-Quotes are fetched from:
+Quotes are currently fetched from (read-only, at build time):
 ```
 https://7qt946zi8d.execute-api.us-east-1.amazonaws.com/dev/quotes
 ```
 
-Future admin interface should support:
+**Note:** There is no admin interface to modify quotes. If this were implemented, it would need to support:
 - POST - Create new quote
 - PUT - Update existing quote
 - DELETE - Remove quote

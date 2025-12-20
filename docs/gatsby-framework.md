@@ -111,7 +111,8 @@ Sets HTML language attribute to `en`.
 
 Required environment variables:
 - `CONTENTFUL_ACCESS_TOKEN` - Contentful API access token
-- `GATSBY_ADMIN_PASSWORD` - Admin authentication password
+
+**Note:** `GATSBY_ADMIN_PASSWORD` was previously used for admin authentication but has been removed along with the admin system.
 
 ## Scripts
 

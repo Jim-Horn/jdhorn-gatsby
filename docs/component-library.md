@@ -196,7 +196,6 @@ src/components/
 │   ├── data.ts
 │   ├── utils.ts
 │   └── index.ts
-├── AuthContext.tsx
 ├── CodePen.tsx
 ├── ExternalLink.tsx
 ├── GetQuote.tsx
@@ -209,6 +208,8 @@ src/components/
 ├── Tags.tsx
 └── index.ts
 ```
+
+**Note:** `AuthContext.tsx` was removed on December 20, 2025 along with the admin system.
 
 ## Styling
 

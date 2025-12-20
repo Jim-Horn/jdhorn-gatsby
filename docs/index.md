@@ -4,7 +4,7 @@ This documentation provides an overview of all major systems in the jdhorn.com G
 
 ## Overview
 
-jdhorn.com is a personal website built with Gatsby, React, and TypeScript. It features a blog powered by Contentful CMS, interactive web tools, quote management, and an admin system.
+jdhorn.com is a personal website built with Gatsby, React, and TypeScript. It features a blog powered by Contentful CMS, interactive web tools, and quote management.
 
 ## Major Systems
 
@@ -49,17 +49,16 @@ jdhorn.com is a personal website built with Gatsby, React, and TypeScript. It fe
    - Quote display and management
    - Random quote selection
 
-### Admin & Security
+### Legacy/Removed Systems
 
-8. [Authentication System](./authentication.md)
-   - Password-based authentication
-   - AuthContext provider
-   - Protected routes
+8. [Authentication System](./authentication.md) - **REMOVED**
+   - Was a password-based authentication system
+   - Built for admin system (also removed)
+   - Removed on December 20, 2025
 
-9. [Admin System](./admin-system.md)
-   - Admin dashboard
-   - Quote management interface
-   - Admin route configuration
+9. [Admin System](./admin-system.md) - **REMOVED**
+   - Was a skeleton/placeholder - incomplete side project
+   - Removed on December 20, 2025
 
 ### Technical Systems
 

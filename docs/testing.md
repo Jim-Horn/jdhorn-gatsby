@@ -75,7 +75,6 @@ Jest setup file for test configuration.
 
 ### Component Tests
 
-- `src/components/AuthContext.test.tsx` - Authentication context tests
 - `src/components/ExternalLink.test.tsx` - External link component tests
 - `src/components/Header.test.tsx` - Header component tests
 - `src/components/ListTags.test.tsx` - Tag list component tests

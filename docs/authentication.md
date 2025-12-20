@@ -1,8 +1,14 @@
-# Authentication System
+# Authentication System - REMOVED
+
+## Status
+
+**This system has been removed from the codebase as of December 20, 2025.**
 
 ## Overview
 
-The authentication system provides password-based authentication for admin areas of the site. It uses React Context to manage authentication state across the application.
+The authentication system provided password-based authentication for admin areas of the site. It used React Context to manage authentication state across the application.
+
+**Note:** This authentication system was built to support the admin system, which was also a skeleton with no functionality. Since the admin system was removed, the authentication system was also removed.
 
 ## Implementation
 
@@ -151,7 +157,9 @@ Tests cover:
 
 ## Future Enhancements
 
-Potential improvements:
+**Note:** Since the admin system is incomplete, consider whether this authentication system is needed at all. If removing the admin skeleton, this authentication system could also be removed.
+
+If keeping/implementing admin features, potential improvements:
 - Server-side authentication
 - Token-based auth
 - Persistent sessions

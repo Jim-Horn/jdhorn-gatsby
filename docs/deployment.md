@@ -91,9 +91,7 @@ Set in Netlify dashboard:
    - Contentful API access token
    - Used for fetching content
 
-2. **GATSBY_ADMIN_PASSWORD**
-   - Admin authentication password
-   - Available in browser (GATSBY_ prefix)
+**Note:** `GATSBY_ADMIN_PASSWORD` was previously required but has been removed along with the admin system.
 
 ### Configuration
 
