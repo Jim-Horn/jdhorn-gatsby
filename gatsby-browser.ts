@@ -1,5 +1,3 @@
-import React from 'react';
-import { AuthProvider } from './src/components/AuthContext';
 export const onClientEntry = () => {
   if (process.env.NODE_ENV === 'production') {
     console.log('Removing React Devtools');
@@ -13,6 +11,3 @@ export const onClientEntry = () => {
     }
   }
 };
-
-export const wrapRootElement = ({ element }: { element: React.ReactNode }) =>
-  React.createElement(AuthProvider, null, element);
