@@ -2,13 +2,6 @@ import * as React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 const Sitemap = () => {
-  const isBrowser = typeof window !== 'undefined';
-
-  // Safe fallback for SSR
-  const isAuthenticated = isBrowser
-    ? require('../components/AuthContext').useAuth().isAuthenticated
-    : false;
-
   const data = useStaticQuery(graphql`
     query {
       allSitePage(
@@ -24,13 +17,7 @@ const Sitemap = () => {
     }
   `);
 
-  const filteredPages = data.allSitePage.edges.filter(
-    (edge: { node: { path: string } }) => {
-      const path = edge.node.path;
-      if (!isAuthenticated && path.startsWith('/admin')) return false;
-      return true;
-    },
-  );
+  const filteredPages = data.allSitePage.edges;
 
   return (
     <ul>
