@@ -29,3 +29,12 @@ export const isValidNumber = (num: string): boolean => {
   if (new Set(num.padStart(4, '0')).size === 1) return false; // Digits cannot all be the same
   return true;
 };
+
+export const generateValidKaprekarNumber = (): number => {
+  while (true) {
+    const num = Math.floor(Math.random() * 9999) + 1;
+    const digits = num.toString().padStart(4, '0');
+    const unique = new Set(digits.split(''));
+    if (unique.size > 1) return num;
+  }
+};

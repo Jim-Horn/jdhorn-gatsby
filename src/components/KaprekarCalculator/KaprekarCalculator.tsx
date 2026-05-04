@@ -8,7 +8,12 @@ import {
   StyledTextarea,
 } from './elements';
 
-import { isValidNumber, computeNumber, padNumber } from './utils';
+import {
+  isValidNumber,
+  computeNumber,
+  padNumber,
+  generateValidKaprekarNumber,
+} from './utils';
 
 // Constants
 const LINE_ENDING = '\n';
@@ -73,6 +78,12 @@ const KaprekarCalculator: React.FC = () => {
     setOutput(result);
   };
 
+  const handleRandomNumber = () => {
+    const num = generateValidKaprekarNumber();
+    setNumber(num.toString().padStart(4, '0'));
+    setOutput('');
+  };
+
   return (
     <StyledContainer>
       <form onSubmit={handleClick}>
@@ -92,7 +103,16 @@ const KaprekarCalculator: React.FC = () => {
             onFocus={ev => ev.target.select()}
             placeholder="e.g., 9831"
           />
-          <StyledButton onClick={handleClick}>Calculate</StyledButton>
+          <StyledButton type="submit" onClick={handleClick}>
+            Calculate
+          </StyledButton>
+          <StyledButton
+            type="button"
+            onClick={handleRandomNumber}
+            style={{ marginLeft: '0.75rem' }}
+          >
+            Random number
+          </StyledButton>
         </StyledInputGroup>
       </form>
       <StyledTextarea value={output} readOnly />
