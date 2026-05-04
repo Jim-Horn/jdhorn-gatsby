@@ -2,8 +2,8 @@
   # Specify Node.js version for builds
   environment = { NODE_VERSION = "22" }
 
-  # Default build command for Gatsby
-  command = "yarn build"
+  # Clean first so persisted Gatsby cache cannot reference removed plugins (e.g. after dropping GA).
+  command = "yarn clean && yarn build"
   
   # Default publish directory for Gatsby
   publish = "public"
