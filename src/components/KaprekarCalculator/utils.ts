@@ -1,31 +1,35 @@
-const pipe =
-  (...fns: Array<(input: any) => any>) =>
-  (input: any) =>
-    fns.reduce((acc, fn) => fn(acc), input);
-
 export const padNumber = (num: string): string => num.padStart(4, '0');
 
-const splitNumber = (data: string): string[] => data.split('');
-
-export const createSortArray =
-  (ascending: boolean) =>
-  (arrNumber: string[]): number[] =>
-    arrNumber.map(Number).sort((a, b) => (ascending ? a - b : b - a));
-
-export const joinAndCastNumber = (arrNumber: number[]): number =>
-  Number(arrNumber.join(''));
+const sortDigits = (input: string, ascending: boolean): string =>
+  input
+    .split('')
+    .map(Number)
+    .sort((a, b) => (ascending ? a - b : b - a))
+    .join('');
 
 export const computeNumber = (input: string, ascending: boolean): number =>
-  pipe(
-    padNumber,
-    splitNumber,
-    createSortArray(ascending),
-    joinAndCastNumber,
-  )(input);
+  Number(sortDigits(padNumber(input), ascending));
 
 export const isValidNumber = (num: string): boolean => {
+  if (!/^\d{1,4}$/.test(num)) return false;
+
   const number = Number(num);
-  if (isNaN(number) || number < 1 || number > 9998) return false; // Must be between 1 and 9998
-  if (new Set(num.padStart(4, '0')).size === 1) return false; // Digits cannot all be the same
+  const paddedNumber = padNumber(num);
+
+  if (number < 1 || number > 9998) return false; // Must be between 1 and 9998
+  if (new Set(paddedNumber).size === 1) return false; // Digits cannot all be the same
+
   return true;
+};
+
+export const generateValidKaprekarNumber = (): number => {
+  for (let i = 0; i < 100; i++) {
+    const num = Math.floor(Math.random() * 9999) + 1;
+    const digits = padNumber(num.toString());
+    const uniqueDigits = new Set(digits);
+
+    if (uniqueDigits.size > 1) return num;
+  }
+
+  return 1000;
 };

@@ -38,14 +38,14 @@
     "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied `any` type. */,
     "strictFunctionTypes": true /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */,
     "alwaysStrict": true /* Ensure 'use strict' is always emitted. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-    "types": ["./global.d.ts"]
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": [
     "./src/**/*",
     "./gatsby-node.ts",
     "./gatsby-config.ts",
     "./plugins/**/*",
-    "./global.d.ts"
+    "./global.d.ts",
+    "./jest-dom-augment.d.ts"
   ]
 }

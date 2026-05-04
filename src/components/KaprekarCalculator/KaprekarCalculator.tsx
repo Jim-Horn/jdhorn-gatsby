@@ -5,21 +5,87 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
-  StyledTextarea,
+  StyledStepsContainer,
+  StyledStep,
+  StyledResult,
+  StyledError,
 } from './elements';
 
-import { isValidNumber, computeNumber, padNumber } from './utils';
+import {
+  isValidNumber,
+  computeNumber,
+  padNumber,
+  generateValidKaprekarNumber,
+} from './utils';
 
 // Constants
-const LINE_ENDING = '\n';
 const KAPREKAR_CONSTANT = 6174;
+const INVALID_NUMBER_MESSAGE =
+  'Please enter a valid number between 1 and 9998 with at least two different digits.';
 
-// React Component
+const STEP_ANIMATION_INITIAL_DELAY = 350;
+const STEP_ANIMATION_STAGGER = 220;
+const RESULT_ANIMATION_DELAY_BUFFER = 180;
+
+type KaprekarStep = {
+  iteration: number;
+  largest: string;
+  smallest: string;
+  difference: string;
+};
+
+type KaprekarResult = {
+  steps: KaprekarStep[];
+  reachedConstant: boolean;
+  iterations: number;
+};
+
+const formatNumber = (num: number): string => padNumber(num.toString());
+
+const calculateKaprekar = (input: string): KaprekarResult => {
+  let currentNumber = padNumber(input);
+  let iteration = 1;
+  const steps: KaprekarStep[] = [];
+
+  while (currentNumber !== KAPREKAR_CONSTANT.toString()) {
+    const smallest = computeNumber(currentNumber, true);
+    const largest = computeNumber(currentNumber, false);
+    const difference = largest - smallest;
+
+    steps.push({
+      iteration,
+      largest: formatNumber(largest),
+      smallest: formatNumber(smallest),
+      difference: formatNumber(difference),
+    });
+
+    currentNumber = formatNumber(difference);
+    iteration++;
+
+    if (difference === 0) break;
+  }
+
+  return {
+    steps,
+    reachedConstant: currentNumber === KAPREKAR_CONSTANT.toString(),
+    iterations: iteration - 1,
+  };
+};
+
 const KaprekarCalculator: React.FC = () => {
   const [number, setNumber] = useState<string>('');
-  const [output, setOutput] = useState<string>('');
+  const [steps, setSteps] = useState<KaprekarStep[]>([]);
+  const [error, setError] = useState<string>('');
+  const [result, setResult] = useState<KaprekarResult | null>(null);
+  /** Bumped each successful run so CSS animations restart (forwards fill keeps nodes “finished”). */
+  const [animationRunId, setAnimationRunId] = useState(0);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const resultDelay =
+    STEP_ANIMATION_INITIAL_DELAY +
+    steps.length * STEP_ANIMATION_STAGGER +
+    RESULT_ANIMATION_DELAY_BUFFER;
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -32,50 +98,41 @@ const KaprekarCalculator: React.FC = () => {
     }
   };
 
-  const handleClick = (ev: { preventDefault: () => void }) => {
+  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    handleBlur({
-      target: { value: number },
-    } as React.FocusEvent<HTMLInputElement>);
-    if (!isValidNumber(number)) {
-      setOutput(
-        'Please enter a valid number between 1 and 9998 with at least two different digits.',
-      );
+
+    const normalizedNumber = padNumber(number.trim());
+
+    if (!isValidNumber(normalizedNumber)) {
+      setError(INVALID_NUMBER_MESSAGE);
+      setSteps([]);
+      setResult(null);
       return;
     }
 
-    let currentNumber = number;
-    let iteration = 1;
-    let result = '';
+    const kaprekarResult = calculateKaprekar(normalizedNumber);
 
-    // Kaprekar's Process
-    while (currentNumber !== KAPREKAR_CONSTANT.toString()) {
-      const smallest = computeNumber(currentNumber, true); // Ascending order
-      const largest = computeNumber(currentNumber, false); // Descending order
-      const difference = largest - smallest;
+    setNumber(normalizedNumber);
+    setError('');
+    setAnimationRunId(id => id + 1);
+    setSteps(kaprekarResult.steps);
+    setResult(kaprekarResult);
+  };
 
-      result += `Iteration ${iteration}: ${largest} - ${smallest} = ${difference}${LINE_ENDING}`;
+  const handleRandomNumber = () => {
+    const randomNumber = formatNumber(generateValidKaprekarNumber());
+    const kaprekarResult = calculateKaprekar(randomNumber);
 
-      // Prepare for the next iteration
-      currentNumber = padNumber(difference.toString());
-      iteration++;
-
-      if (difference === 0) break; // Prevent infinite loop
-    }
-
-    // Append Final Result
-    if (currentNumber === KAPREKAR_CONSTANT.toString()) {
-      result += `Kaprekar's constant reached: ${currentNumber} in ${
-        iteration - 1
-      } iterations.${LINE_ENDING}`;
-    }
-
-    setOutput(result);
+    setNumber(randomNumber);
+    setError('');
+    setAnimationRunId(id => id + 1);
+    setSteps(kaprekarResult.steps);
+    setResult(kaprekarResult);
   };
 
   return (
     <StyledContainer>
-      <form onSubmit={handleClick}>
+      <form onSubmit={handleSubmit}>
         <StyledInputGroup>
           <StyledLabel htmlFor="numberInput">
             Enter a 4-digit number:
@@ -92,10 +149,38 @@ const KaprekarCalculator: React.FC = () => {
             onFocus={ev => ev.target.select()}
             placeholder="e.g., 9831"
           />
-          <StyledButton onClick={handleClick}>Calculate</StyledButton>
+          <StyledButton type="submit">Calculate</StyledButton>
+          <StyledButton
+            type="button"
+            onClick={handleRandomNumber}
+            style={{ marginLeft: '0.75rem' }}>
+            Random number
+          </StyledButton>
         </StyledInputGroup>
       </form>
-      <StyledTextarea value={output} readOnly />
+      {error && <StyledError>{error}</StyledError>}
+
+      {steps.length > 0 && (
+        <StyledStepsContainer aria-live="polite">
+          {steps.map((step, index) => (
+            <StyledStep
+              key={`${animationRunId}-${step.iteration}-${step.largest}-${step.smallest}-${step.difference}`}
+              $delay={
+                STEP_ANIMATION_INITIAL_DELAY + index * STEP_ANIMATION_STAGGER
+              }>
+              <strong>Iteration {step.iteration}:</strong> {step.largest} -{' '}
+              {step.smallest} = {step.difference}
+            </StyledStep>
+          ))}
+
+          {result?.reachedConstant && (
+            <StyledResult key={animationRunId} $delay={resultDelay}>
+              Kaprekar&apos;s constant reached: {KAPREKAR_CONSTANT} in{' '}
+              {result.iterations} iterations.
+            </StyledResult>
+          )}
+        </StyledStepsContainer>
+      )}
     </StyledContainer>
   );
 };
