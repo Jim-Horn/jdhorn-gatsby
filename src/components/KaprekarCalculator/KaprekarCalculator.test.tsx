@@ -98,9 +98,9 @@ describe('KaprekarCalculator', () => {
     ).toBeInTheDocument();
   });
 
-  it('tracks Random number via trackKaprekarButtonClick', () => {
+  it('tracks Random number via trackKaprekarInteraction', () => {
     const trackSpy = jest
-      .spyOn(gtm, 'trackKaprekarButtonClick')
+      .spyOn(gtm, 'trackKaprekarInteraction')
       .mockImplementation(() => {
         /* no-op */
       });
@@ -114,9 +114,9 @@ describe('KaprekarCalculator', () => {
     expect(trackSpy).toHaveBeenCalledWith('random');
   });
 
-  it('does not trackKaprekarButtonClick when Calculate is submitted with invalid input', () => {
+  it('does not trackKaprekarInteraction when Calculate is submitted with invalid input', () => {
     const trackSpy = jest
-      .spyOn(gtm, 'trackKaprekarButtonClick')
+      .spyOn(gtm, 'trackKaprekarInteraction')
       .mockImplementation(() => {
         /* no-op */
       });
@@ -132,9 +132,9 @@ describe('KaprekarCalculator', () => {
     expect(trackSpy).not.toHaveBeenCalled();
   });
 
-  it('tracks successful Calculate via trackKaprekarButtonClick', () => {
+  it('tracks successful Calculate via trackKaprekarInteraction', () => {
     const trackSpy = jest
-      .spyOn(gtm, 'trackKaprekarButtonClick')
+      .spyOn(gtm, 'trackKaprekarInteraction')
       .mockImplementation(() => {
         /* no-op */
       });

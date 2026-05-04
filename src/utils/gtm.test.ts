@@ -1,7 +1,7 @@
 import {
   pushDataLayer,
   trackEvent,
-  trackKaprekarButtonClick,
+  trackKaprekarInteraction,
   KAPREKAR_COMPONENT,
   KAPREKAR_INTERACTION_EVENT,
 } from './gtm';
@@ -56,13 +56,13 @@ describe('trackEvent', () => {
   });
 });
 
-describe('trackKaprekarButtonClick', () => {
+describe('trackKaprekarInteraction', () => {
   afterEach(() => {
     delete (window as unknown as { dataLayer?: unknown[] }).dataLayer;
   });
 
   it('pushes the Kaprekar interaction shape', () => {
-    trackKaprekarButtonClick('calculate');
+    trackKaprekarInteraction('calculate');
 
     expect(window.dataLayer).toEqual([
       {

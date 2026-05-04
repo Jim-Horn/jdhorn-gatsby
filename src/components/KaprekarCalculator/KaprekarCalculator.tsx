@@ -17,7 +17,7 @@ import {
   padNumber,
   generateValidKaprekarNumber,
 } from './utils';
-import { trackKaprekarButtonClick } from '@utils/gtm';
+import { trackKaprekarInteraction } from '@utils/gtm';
 
 // Constants
 const KAPREKAR_CONSTANT = 6174;
@@ -111,7 +111,7 @@ const KaprekarCalculator: React.FC = () => {
       return;
     }
 
-    trackKaprekarButtonClick('calculate');
+    trackKaprekarInteraction('calculate');
 
     const kaprekarResult = calculateKaprekar(normalizedNumber);
 
@@ -123,7 +123,7 @@ const KaprekarCalculator: React.FC = () => {
   };
 
   const handleRandomNumber = () => {
-    trackKaprekarButtonClick('random');
+    trackKaprekarInteraction('random');
 
     const randomNumber = formatNumber(generateValidKaprekarNumber());
     const kaprekarResult = calculateKaprekar(randomNumber);

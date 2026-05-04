@@ -1,14 +1,23 @@
 /**
+ * GTM / dataLayer helpers.
+ *
+ * Kaprekar uses one custom event, {@link KAPREKAR_INTERACTION_EVENT}. If your container
+ * still listens for `kaprekar_calculator_random_number` or `kaprekar_calculator_calculate`,
+ * update triggers/tags—those names are no longer emitted from this app.
+ */
+
+/**
  * dataLayer `event` value (GTM custom event name).
- * Emitted after a **valid** Calculate/Enter submit, or when **Random** is used;
- * distinguish with `buttonName` (`trackKaprekarButtonClick`).
+ * Emitted after a **valid** Calculate (including **Enter** in the form) or when **Random** runs;
+ * distinguish with `buttonName` on the payload (`trackKaprekarInteraction`).
  */
 export const KAPREKAR_INTERACTION_EVENT = 'kaprekar_button_click' as const;
 
 /** dataLayer `component` for Kaprekar calculator pushes. */
 export const KAPREKAR_COMPONENT = 'kaprekar_calculator' as const;
 
-export type KaprekarButtonName = 'calculate' | 'random';
+/** Logical source for {@link trackKaprekarInteraction} (`buttonName` in dataLayer). */
+export type KaprekarInteractionKind = 'calculate' | 'random';
 
 /**
  * Push to `window.dataLayer` for Google Tag Manager (see gatsby-plugin-google-tagmanager).
@@ -32,11 +41,14 @@ export function trackEvent(
   pushDataLayer({ ...rest, event: eventName });
 }
 
-/** Kaprekar calculator: one GTM event + typed `buttonName` + fixed `component`. */
-export function trackKaprekarButtonClick(buttonName: KaprekarButtonName): void {
+/**
+ * Kaprekar calculator: one GTM event + `buttonName` + fixed `component`.
+ * `calculate` = successful form submit (Calculate click **or** Enter in the input); `random` = Random control.
+ */
+export function trackKaprekarInteraction(kind: KaprekarInteractionKind): void {
   pushDataLayer({
     event: KAPREKAR_INTERACTION_EVENT,
     component: KAPREKAR_COMPONENT,
-    buttonName,
+    buttonName: kind,
   });
 }
