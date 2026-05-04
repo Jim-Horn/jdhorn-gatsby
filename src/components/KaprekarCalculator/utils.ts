@@ -1,30 +1,35 @@
 export const padNumber = (num: string): string => num.padStart(4, '0');
 
-export const computeNumber = (input: string, ascending: boolean): number => {
-  const sortedDigits = padNumber(input)
+const sortDigits = (input: string, ascending: boolean): string =>
+  input
     .split('')
     .map(Number)
-    .sort((a, b) => (ascending ? a - b : b - a));
+    .sort((a, b) => (ascending ? a - b : b - a))
+    .join('');
 
-  return Number(sortedDigits.join(''));
-};
+export const computeNumber = (input: string, ascending: boolean): number =>
+  Number(sortDigits(padNumber(input), ascending));
 
 export const isValidNumber = (num: string): boolean => {
+  if (!/^\d{1,4}$/.test(num)) return false;
+
   const number = Number(num);
   const paddedNumber = padNumber(num);
 
-  if (Number.isNaN(number) || number < 1 || number > 9998) return false; // Must be between 1 and 9998
+  if (number < 1 || number > 9998) return false; // Must be between 1 and 9998
   if (new Set(paddedNumber).size === 1) return false; // Digits cannot all be the same
 
   return true;
 };
 
 export const generateValidKaprekarNumber = (): number => {
-  while (true) {
+  for (let i = 0; i < 100; i++) {
     const num = Math.floor(Math.random() * 9999) + 1;
     const digits = padNumber(num.toString());
     const uniqueDigits = new Set(digits);
 
     if (uniqueDigits.size > 1) return num;
   }
+
+  return 1000;
 };
