@@ -98,9 +98,9 @@ describe('KaprekarCalculator', () => {
     ).toBeInTheDocument();
   });
 
-  it('pushes a GTM dataLayer event when Random number is clicked', () => {
-    const pushSpy = jest.spyOn(gtm, 'pushDataLayer').mockImplementation(() => {
-      /* no-op: avoid touching real dataLayer */
+  it('tracks Random number via trackEvent', () => {
+    const trackSpy = jest.spyOn(gtm, 'trackEvent').mockImplementation(() => {
+      /* no-op */
     });
     jest.spyOn(utils, 'generateValidKaprekarNumber').mockReturnValue(1234);
 
@@ -108,10 +108,42 @@ describe('KaprekarCalculator', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /random number/i }));
 
-    expect(pushSpy).toHaveBeenCalledTimes(1);
-    expect(pushSpy).toHaveBeenCalledWith({
-      event: gtm.GTM_CUSTOM_EVENTS.kaprekarCalculatorRandomNumber,
-      component: 'kaprekar_calculator',
+    expect(trackSpy).toHaveBeenCalledTimes(1);
+    expect(trackSpy).toHaveBeenCalledWith(gtm.KAPREKAR_BUTTON_CLICK_EVENT, {
+      buttonName: 'random',
+    });
+  });
+
+  it('does not trackEvent when Calculate is submitted with invalid input', () => {
+    const trackSpy = jest.spyOn(gtm, 'trackEvent').mockImplementation(() => {
+      /* no-op */
+    });
+    jest.spyOn(utils, 'isValidNumber').mockReturnValue(false);
+
+    render(<KaprekarCalculator />);
+
+    fireEvent.change(screen.getByLabelText(/enter a 4-digit number/i), {
+      target: { value: '1111' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /calculate/i }));
+
+    expect(trackSpy).not.toHaveBeenCalled();
+  });
+
+  it('tracks successful Calculate via trackEvent', () => {
+    const trackSpy = jest.spyOn(gtm, 'trackEvent').mockImplementation(() => {
+      /* no-op */
+    });
+
+    render(<KaprekarCalculator />);
+
+    fireEvent.change(screen.getByLabelText(/enter a 4-digit number/i), {
+      target: { value: '1234' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /calculate/i }));
+
+    expect(trackSpy).toHaveBeenCalledWith(gtm.KAPREKAR_BUTTON_CLICK_EVENT, {
+      buttonName: 'calculate',
     });
   });
 });

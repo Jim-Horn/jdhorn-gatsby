@@ -17,7 +17,7 @@ import {
   padNumber,
   generateValidKaprekarNumber,
 } from './utils';
-import { GTM_CUSTOM_EVENTS, pushDataLayer } from '@utils/gtm';
+import { KAPREKAR_BUTTON_CLICK_EVENT, trackEvent } from '@utils/gtm';
 
 // Constants
 const KAPREKAR_CONSTANT = 6174;
@@ -111,6 +111,8 @@ const KaprekarCalculator: React.FC = () => {
       return;
     }
 
+    trackEvent(KAPREKAR_BUTTON_CLICK_EVENT, { buttonName: 'calculate' });
+
     const kaprekarResult = calculateKaprekar(normalizedNumber);
 
     setNumber(normalizedNumber);
@@ -121,10 +123,7 @@ const KaprekarCalculator: React.FC = () => {
   };
 
   const handleRandomNumber = () => {
-    pushDataLayer({
-      event: GTM_CUSTOM_EVENTS.kaprekarCalculatorRandomNumber,
-      component: 'kaprekar_calculator',
-    });
+    trackEvent(KAPREKAR_BUTTON_CLICK_EVENT, { buttonName: 'random' });
 
     const randomNumber = formatNumber(generateValidKaprekarNumber());
     const kaprekarResult = calculateKaprekar(randomNumber);
