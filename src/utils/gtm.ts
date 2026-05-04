@@ -1,5 +1,12 @@
-/** GTM `event` name for Kaprekar calculator primary actions (use `buttonName` to distinguish). */
-export const KAPREKAR_BUTTON_CLICK_EVENT = 'kaprekar_button_click' as const;
+/**
+ * dataLayer `event` value (GTM custom event name).
+ * Emitted after a **valid** Calculate/Enter submit, or when **Random** is used;
+ * distinguish with `buttonName` (`trackKaprekarButtonClick`).
+ */
+export const KAPREKAR_INTERACTION_EVENT = 'kaprekar_button_click' as const;
+
+/** dataLayer `component` for Kaprekar calculator pushes. */
+export const KAPREKAR_COMPONENT = 'kaprekar_calculator' as const;
 
 export type KaprekarButtonName = 'calculate' | 'random';
 
@@ -15,16 +22,21 @@ export function pushDataLayer(item: Record<string, unknown>): void {
 }
 
 /**
- * Push a named event (and optional fields) to `window.dataLayer` for GTM.
- * Adds `component: 'kaprekar_calculator'` unless overridden in `params`.
+ * Generic dataLayer push: `event` is always `eventName` (callers cannot override via `params`).
  */
 export function trackEvent(
   eventName: string,
   params: Record<string, unknown> = {},
 ): void {
+  const { event: _ignored, ...rest } = params;
+  pushDataLayer({ ...rest, event: eventName });
+}
+
+/** Kaprekar calculator: one GTM event + typed `buttonName` + fixed `component`. */
+export function trackKaprekarButtonClick(buttonName: KaprekarButtonName): void {
   pushDataLayer({
-    event: eventName,
-    component: 'kaprekar_calculator',
-    ...params,
+    event: KAPREKAR_INTERACTION_EVENT,
+    component: KAPREKAR_COMPONENT,
+    buttonName,
   });
 }

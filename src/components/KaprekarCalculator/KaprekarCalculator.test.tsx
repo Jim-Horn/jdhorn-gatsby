@@ -98,10 +98,12 @@ describe('KaprekarCalculator', () => {
     ).toBeInTheDocument();
   });
 
-  it('tracks Random number via trackEvent', () => {
-    const trackSpy = jest.spyOn(gtm, 'trackEvent').mockImplementation(() => {
-      /* no-op */
-    });
+  it('tracks Random number via trackKaprekarButtonClick', () => {
+    const trackSpy = jest
+      .spyOn(gtm, 'trackKaprekarButtonClick')
+      .mockImplementation(() => {
+        /* no-op */
+      });
     jest.spyOn(utils, 'generateValidKaprekarNumber').mockReturnValue(1234);
 
     render(<KaprekarCalculator />);
@@ -109,15 +111,15 @@ describe('KaprekarCalculator', () => {
     fireEvent.click(screen.getByRole('button', { name: /random number/i }));
 
     expect(trackSpy).toHaveBeenCalledTimes(1);
-    expect(trackSpy).toHaveBeenCalledWith(gtm.KAPREKAR_BUTTON_CLICK_EVENT, {
-      buttonName: 'random',
-    });
+    expect(trackSpy).toHaveBeenCalledWith('random');
   });
 
-  it('does not trackEvent when Calculate is submitted with invalid input', () => {
-    const trackSpy = jest.spyOn(gtm, 'trackEvent').mockImplementation(() => {
-      /* no-op */
-    });
+  it('does not trackKaprekarButtonClick when Calculate is submitted with invalid input', () => {
+    const trackSpy = jest
+      .spyOn(gtm, 'trackKaprekarButtonClick')
+      .mockImplementation(() => {
+        /* no-op */
+      });
     jest.spyOn(utils, 'isValidNumber').mockReturnValue(false);
 
     render(<KaprekarCalculator />);
@@ -130,10 +132,12 @@ describe('KaprekarCalculator', () => {
     expect(trackSpy).not.toHaveBeenCalled();
   });
 
-  it('tracks successful Calculate via trackEvent', () => {
-    const trackSpy = jest.spyOn(gtm, 'trackEvent').mockImplementation(() => {
-      /* no-op */
-    });
+  it('tracks successful Calculate via trackKaprekarButtonClick', () => {
+    const trackSpy = jest
+      .spyOn(gtm, 'trackKaprekarButtonClick')
+      .mockImplementation(() => {
+        /* no-op */
+      });
 
     render(<KaprekarCalculator />);
 
@@ -142,8 +146,6 @@ describe('KaprekarCalculator', () => {
     });
     fireEvent.click(screen.getByRole('button', { name: /calculate/i }));
 
-    expect(trackSpy).toHaveBeenCalledWith(gtm.KAPREKAR_BUTTON_CLICK_EVENT, {
-      buttonName: 'calculate',
-    });
+    expect(trackSpy).toHaveBeenCalledWith('calculate');
   });
 });
