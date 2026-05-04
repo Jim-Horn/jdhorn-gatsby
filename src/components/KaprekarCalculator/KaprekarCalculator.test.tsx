@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { KaprekarCalculator } from './KaprekarCalculator';
 import * as utils from './utils';
+import * as gtm from '@utils/gtm';
 
 describe('KaprekarCalculator', () => {
   afterEach(() => {
@@ -95,5 +96,22 @@ describe('KaprekarCalculator', () => {
     expect(
       screen.getByText(/kaprekar.*constant reached:\s*6174/i),
     ).toBeInTheDocument();
+  });
+
+  it('pushes a GTM dataLayer event when Random number is clicked', () => {
+    const pushSpy = jest.spyOn(gtm, 'pushDataLayer').mockImplementation(() => {
+      /* no-op: avoid touching real dataLayer */
+    });
+    jest.spyOn(utils, 'generateValidKaprekarNumber').mockReturnValue(1234);
+
+    render(<KaprekarCalculator />);
+
+    fireEvent.click(screen.getByRole('button', { name: /random number/i }));
+
+    expect(pushSpy).toHaveBeenCalledTimes(1);
+    expect(pushSpy).toHaveBeenCalledWith({
+      event: gtm.GTM_CUSTOM_EVENTS.kaprekarCalculatorRandomNumber,
+      component: 'kaprekar_calculator',
+    });
   });
 });
