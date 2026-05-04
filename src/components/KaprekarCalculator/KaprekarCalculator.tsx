@@ -18,6 +18,37 @@ import {
 // Constants
 const LINE_ENDING = '\n';
 const KAPREKAR_CONSTANT = 6174;
+const INVALID_NUMBER_MESSAGE =
+  'Please enter a valid number between 1 and 9998 with at least two different digits.';
+
+const formatNumber = (num: number): string => padNumber(num.toString());
+
+const calculateKaprekar = (input: string): string => {
+  let currentNumber = padNumber(input);
+  let iteration = 1;
+  let result = '';
+
+  while (currentNumber !== KAPREKAR_CONSTANT.toString()) {
+    const smallest = computeNumber(currentNumber, true);
+    const largest = computeNumber(currentNumber, false);
+    const difference = largest - smallest;
+
+    result += `Iteration ${iteration}: ${formatNumber(largest)} - ${formatNumber(
+      smallest,
+    )} = ${formatNumber(difference)}${LINE_ENDING}`;
+
+    currentNumber = formatNumber(difference);
+    iteration++;
+
+    if (difference === 0) break;
+  }
+
+  if (currentNumber !== KAPREKAR_CONSTANT.toString()) return result;
+
+  return `${result}Kaprekar's constant reached: ${currentNumber} in ${
+    iteration - 1
+  } iterations.${LINE_ENDING}`;
+};
 
 // React Component
 const KaprekarCalculator: React.FC = () => {
@@ -37,56 +68,29 @@ const KaprekarCalculator: React.FC = () => {
     }
   };
 
-  const handleClick = (ev: { preventDefault: () => void }) => {
+  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    handleBlur({
-      target: { value: number },
-    } as React.FocusEvent<HTMLInputElement>);
-    if (!isValidNumber(number)) {
-      setOutput(
-        'Please enter a valid number between 1 and 9998 with at least two different digits.',
-      );
+
+    const normalizedNumber = padNumber(number.trim());
+
+    if (!isValidNumber(normalizedNumber)) {
+      setOutput(INVALID_NUMBER_MESSAGE);
       return;
     }
 
-    let currentNumber = number;
-    let iteration = 1;
-    let result = '';
-
-    // Kaprekar's Process
-    while (currentNumber !== KAPREKAR_CONSTANT.toString()) {
-      const smallest = computeNumber(currentNumber, true); // Ascending order
-      const largest = computeNumber(currentNumber, false); // Descending order
-      const difference = largest - smallest;
-
-      result += `Iteration ${iteration}: ${largest} - ${smallest} = ${difference}${LINE_ENDING}`;
-
-      // Prepare for the next iteration
-      currentNumber = padNumber(difference.toString());
-      iteration++;
-
-      if (difference === 0) break; // Prevent infinite loop
-    }
-
-    // Append Final Result
-    if (currentNumber === KAPREKAR_CONSTANT.toString()) {
-      result += `Kaprekar's constant reached: ${currentNumber} in ${
-        iteration - 1
-      } iterations.${LINE_ENDING}`;
-    }
-
-    setOutput(result);
+    setNumber(normalizedNumber);
+    setOutput(calculateKaprekar(normalizedNumber));
   };
 
   const handleRandomNumber = () => {
-    const num = generateValidKaprekarNumber();
-    setNumber(num.toString().padStart(4, '0'));
-    setOutput('');
+    const randomNumber = formatNumber(generateValidKaprekarNumber());
+    setNumber(randomNumber);
+    setOutput(calculateKaprekar(randomNumber));
   };
 
   return (
     <StyledContainer>
-      <form onSubmit={handleClick}>
+      <form onSubmit={handleSubmit}>
         <StyledInputGroup>
           <StyledLabel htmlFor="numberInput">
             Enter a 4-digit number:
@@ -103,14 +107,11 @@ const KaprekarCalculator: React.FC = () => {
             onFocus={ev => ev.target.select()}
             placeholder="e.g., 9831"
           />
-          <StyledButton type="submit" onClick={handleClick}>
-            Calculate
-          </StyledButton>
+          <StyledButton type="submit">Calculate</StyledButton>
           <StyledButton
             type="button"
             onClick={handleRandomNumber}
-            style={{ marginLeft: '0.75rem' }}
-          >
+            style={{ marginLeft: '0.75rem' }}>
             Random number
           </StyledButton>
         </StyledInputGroup>
