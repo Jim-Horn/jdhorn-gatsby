@@ -2,6 +2,20 @@ import { GatsbyNode } from 'gatsby';
 import path from 'path';
 import axios from 'axios';
 
+/** Match `tsconfig.json` `paths` so bundler resolves `@utils/*` and `@components/*`. */
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '@utils': path.resolve(__dirname, 'src/utils'),
+        '@components': path.resolve(__dirname, 'src/components'),
+      },
+    },
+  });
+};
+
 const tagPageTemplate = path.resolve(`./src/templates/tag.tsx`);
 const contentfulPageTemplate = path.resolve(
   `./src/templates/contentfulPost.tsx`,
