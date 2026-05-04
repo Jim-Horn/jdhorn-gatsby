@@ -10,12 +10,15 @@
 
 require('dotenv').config();
 
+/** Canonical origin (no trailing slash); used for sitemap / robots URLs */
+const SITE_HOST = `https://jdhorn.com`;
+
 module.exports = {
   siteMetadata: {
     title: `jdhorn.com`,
     description: `Jim Horn's website`,
     author: `@jdhorn`,
-    siteUrl: `https://jdhorn.com/`,
+    siteUrl: `${SITE_HOST}/`,
   },
   plugins: [
     `gatsby-plugin-netlify`,
@@ -94,6 +97,16 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: SITE_HOST,
+        // gatsby-plugin-sitemap writes sitemap-index.xml at site root (not /sitemap/)
+        sitemap: `${SITE_HOST}/sitemap-index.xml`,
+        policy: [{ userAgent: `*`, allow: `/` }],
+      },
+    },
+    // Keep last: https://www.gatsbyjs.com/plugins/gatsby-plugin-sitemap/
+    `gatsby-plugin-sitemap`,
   ],
 };
