@@ -97,7 +97,6 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
