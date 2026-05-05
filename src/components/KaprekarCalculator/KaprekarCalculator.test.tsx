@@ -4,6 +4,9 @@ import { KaprekarCalculator } from './KaprekarCalculator';
 import * as utils from './utils';
 import * as gtm from '@utils/gtm';
 
+/** Matches submit button visible label (update when copy changes). */
+const randomTryButtonName = /^try a random number$/i;
+
 describe('KaprekarCalculator', () => {
   afterEach(() => {
     jest.restoreAllMocks();
@@ -19,7 +22,7 @@ describe('KaprekarCalculator', () => {
       screen.getByRole('button', { name: /calculate/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: /random number/i }),
+      screen.getByRole('button', { name: randomTryButtonName }),
     ).toBeInTheDocument();
   });
 
@@ -82,12 +85,12 @@ describe('KaprekarCalculator', () => {
     ).toBeInTheDocument();
   });
 
-  it('fills a valid random number and shows steps when Random number is clicked', () => {
+  it('fills a valid random number and shows steps when Try a random number is clicked', () => {
     jest.spyOn(utils, 'generateValidKaprekarNumber').mockReturnValue(1234);
 
     render(<KaprekarCalculator />);
 
-    fireEvent.click(screen.getByRole('button', { name: /random number/i }));
+    fireEvent.click(screen.getByRole('button', { name: randomTryButtonName }));
 
     expect(screen.getByLabelText(/enter a 4-digit number/i)).toHaveValue(
       '1234',
@@ -98,7 +101,7 @@ describe('KaprekarCalculator', () => {
     ).toBeInTheDocument();
   });
 
-  it('tracks Random number via trackKaprekarInteraction', () => {
+  it('tracks Try a random number via trackKaprekarInteraction', () => {
     const trackSpy = jest
       .spyOn(gtm, 'trackKaprekarInteraction')
       .mockImplementation(() => {
@@ -108,7 +111,7 @@ describe('KaprekarCalculator', () => {
 
     render(<KaprekarCalculator />);
 
-    fireEvent.click(screen.getByRole('button', { name: /random number/i }));
+    fireEvent.click(screen.getByRole('button', { name: randomTryButtonName }));
 
     expect(trackSpy).toHaveBeenCalledTimes(1);
     expect(trackSpy).toHaveBeenCalledWith('random');
