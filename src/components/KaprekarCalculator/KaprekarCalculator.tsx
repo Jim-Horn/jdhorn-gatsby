@@ -159,7 +159,7 @@ const KaprekarCalculator: React.FC = () => {
             type="button"
             onClick={handleRandomNumber}
             style={{ marginLeft: '0.75rem' }}>
-            Random number
+            Try a random number
           </StyledButton>
         </StyledInputGroup>
       </form>

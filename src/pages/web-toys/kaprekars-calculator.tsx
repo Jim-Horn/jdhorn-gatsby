@@ -7,9 +7,10 @@ const KaprekarCalculatorPage = () => (
     <h1>Kaprekar Calculator</h1>
     <p>
       The input must be a number between 1 and 9998, with at least two different
-      digits; shorter numbers will be automatically padded with leading zeros to
-      make them 4 digits. <a href="#more-info">More info</a>
+      digits; Numbers are treated as 4 digits (e.g. 123 → 0123).{' '}
+      <a href="#more-info">More info</a>
     </p>
+    <h2>Steps to 6174</h2>
     <KaprekarCalculator />
     <h2 id="more-info">More Information</h2>
     <p>
