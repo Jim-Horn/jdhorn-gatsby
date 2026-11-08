@@ -2,6 +2,13 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 import Codepen from 'react-codepen-embed';
 
+declare module 'react-codepen-embed' {
+  interface Props {
+    /** Embed API version. The library used to set this with function defaultProps. */
+    version?: number;
+  }
+}
+
 type PenProps = {
   hash: string;
   height?: number;
@@ -21,7 +28,10 @@ const CodePen: React.FC<PenProps> = ({
     hash={hash}
     height={height}
     editable={editable}
-    // @ts-ignore
+    themeId="dark"
+    preview
+    version={2}
+    // @ts-ignore library types the loader as a node, but it renders it as a component
     loader={() => <div>Loading...</div>}
   />
 );
