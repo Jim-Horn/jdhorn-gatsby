@@ -6,9 +6,9 @@ const HumpyTextPage = () => (
   <Layout>
     <h1>Humpy text</h1>
     <p>
-      Type anything below and see it transformed so letters alternate in case,
-      like &quot;LiKe So&quot;. Non-letters stay as typed and do not flip the
-      pattern.
+      Type anything below and see it transformed so English letters
+      (A&ndash;Z) alternate in case, like &quot;LiKe So&quot;. Characters outside
+      A&ndash;Z/a&ndash;z stay as typed and do not flip the pattern.
     </p>
     <p>
       The original version lives on{' '}
