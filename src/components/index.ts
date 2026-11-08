@@ -2,6 +2,7 @@ export * from './CodePen';
 export * from './ExternalLink';
 export * from './GetQuote';
 export * from './Header';
+export * from './HumpyText';
 export * from './ImageHeader';
 export * from './KaprekarCalculator';
 export * from './Layout';

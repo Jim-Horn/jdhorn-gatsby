@@ -16,6 +16,10 @@ const WebToysPage = () => (
         <Link to="/web-toys/kaprekars-calculator">Kaprekar Calculator</Link>:
         Discover the fascinating number 6174 and its unique properties.
       </li>
+      <li>
+        <Link to="/web-toys/humpy-text">Humpy Text</Link>: A fUn WaY tO pLaY
+        wItH tExT.
+      </li>
     </ul>
   </Layout>
 );
